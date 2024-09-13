@@ -10,9 +10,9 @@ public class WheelController : MonoBehaviour
     private void Update()
     {
        if (transform.GetComponent<Rigidbody>().velocity.x >= 1 && transform.position != _endGame.StartPosition)
-        {
+       {
             _wheelIslive = false;
-        }
+       }
     }
     public void StartForce()
     {
