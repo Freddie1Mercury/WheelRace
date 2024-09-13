@@ -5,14 +5,34 @@ using UnityEngine;
 public class WheelController : MonoBehaviour
 {
     private bool _wheelIslive = false;
-    public bool WheelIsLive  => _wheelIslive;
+    public bool WheelIsLive => _wheelIslive;
     [SerializeField] private EndGame _endGame;
-    private void Update()
+
+    private void Start()
     {
-       if (transform.GetComponent<Rigidbody>().velocity.x >= 1 && transform.position != _endGame.StartPosition)
-       {
-            _wheelIslive = false;
-       }
+      
+        StartCoroutine(CheckDeath());
+        
+    }
+    private IEnumerator CheckDeath()
+    {
+        while (true)
+        {
+            if (transform.GetComponent<Rigidbody>().velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
+            {
+                yield return new WaitForSeconds(2);
+                if (transform.GetComponent<Rigidbody>().velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
+                {
+                    _wheelIslive = false;
+                    yield return new WaitForSeconds(1);
+
+                }
+            }
+            else
+            {
+            yield return null;
+            }
+        }
     }
     public void StartForce()
     {
