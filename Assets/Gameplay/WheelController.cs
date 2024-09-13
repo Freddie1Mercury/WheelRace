@@ -9,6 +9,7 @@ public class WheelController : MonoBehaviour
     [SerializeField] private EndGame _endGame;
 
     private void Start()
+    [SerializeField] private GenerateTerrain _generateTerrain;
     {
       
         StartCoroutine(CheckDeath());
@@ -39,6 +40,7 @@ public class WheelController : MonoBehaviour
         _wheelIslive = true;
         transform.GetComponent<Rigidbody>().isKinematic = false;
         transform.GetComponent<Rigidbody>().AddForce(new Vector3(-30, 0, 0), ForceMode.Impulse);
+        StartCoroutine(_generateTerrain.Generate());
     }
 
     public void DashLeft()
