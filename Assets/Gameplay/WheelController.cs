@@ -7,9 +7,13 @@ public class WheelController : MonoBehaviour
     private bool _wheelIslive = false;
     public bool WheelIsLive => _wheelIslive;
     [SerializeField] private EndGame _endGame;
+<<<<<<< Updated upstream
 
     private void Start()
+=======
     [SerializeField] private GenerateTerrain _generateTerrain;
+    private void Update()
+>>>>>>> Stashed changes
     {
       
         StartCoroutine(CheckDeath());
