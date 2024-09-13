@@ -9,7 +9,7 @@ public class WheelController : MonoBehaviour
     [SerializeField] private EndGame _endGame;
     private void Update()
     {
-       if (transform.GetComponent<Rigidbody>().velocity.x >= 1 && transform.position != _endGame.StartPosition)
+       if (transform.GetComponent<Rigidbody>().velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
        {
             _wheelIslive = false;
        }
