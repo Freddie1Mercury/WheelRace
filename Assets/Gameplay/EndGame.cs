@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EndGame : MonoBehaviour
@@ -7,8 +8,12 @@ public class EndGame : MonoBehaviour
     public Vector3 StartPosition { get { return _startPosition; } }
 
     [SerializeField] private WheelController _wheelController;
+    [SerializeField] private MoneyManager _moneyManager;
+
     [SerializeField] private GameObject _deathPanel;
     [SerializeField] private GameObject _wheel;
+
+    [SerializeField] private List<GameObject> _uslessInGameSessionUi = new List<GameObject>();
 
     private void Awake()
     {
@@ -16,17 +21,24 @@ public class EndGame : MonoBehaviour
         _startPosition = _wheel.transform.position;
     }
 
-    private void Update()
+    public void Death()
     {
-        if (_wheelController.WheelIsLive == false)
+        if (_wheel.transform.position != _startPosition)
         {
-            if (_wheel.transform.position != _startPosition)
+            _deathPanel.SetActive(true);
+            _wheel.transform.GetComponent<Rigidbody>().isKinematic = true;
+            _wheel.transform.position = _startPosition;
+            _wheel.transform.rotation = _startRotation;
+            // отключения ui который используется в матче
+            foreach (var UiElement in _uslessInGameSessionUi)
             {
-                _deathPanel.SetActive(true);
-                _wheel.transform.GetComponent<Rigidbody>().isKinematic = true;
-                _wheel.transform.position = _startPosition;
-                _wheel.transform.rotation = _startRotation;
+                UiElement.SetActive(false);
             }
+            _moneyManager.AddMoneyForLastSession();
+            Debug.Log("Гений алгоритма");
         }
+
     }
+
+    
 }
