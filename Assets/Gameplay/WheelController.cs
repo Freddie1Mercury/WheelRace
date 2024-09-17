@@ -7,17 +7,10 @@ public class WheelController : MonoBehaviour
     private bool _wheelIslive = false;
     public bool WheelIsLive => _wheelIslive;
     [SerializeField] private EndGame _endGame;
-<<<<<<< Updated upstream
-
-    private void Start()
-=======
     [SerializeField] private GenerateTerrain _generateTerrain;
     private void Update()
->>>>>>> Stashed changes
     {
-      
         StartCoroutine(CheckDeath());
-        
     }
     private IEnumerator CheckDeath()
     {
@@ -30,15 +23,15 @@ public class WheelController : MonoBehaviour
                 {
                     _wheelIslive = false;
                     yield return new WaitForSeconds(1);
-
                 }
             }
             else
             {
-            yield return null;
+                yield return null;
             }
         }
     }
+
     public void StartForce()
     {
         _wheelIslive = true;
