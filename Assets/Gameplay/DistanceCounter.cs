@@ -27,7 +27,6 @@ public class DistanceCounter : MonoBehaviour
             ClearDistance();
 
         _currentResult = Mathf.Abs(transform.position.x - _startXPosition);
-
         if (_currentResult > 0 && _currentResult > _oldDistanceX)
             _distanceConterText.text = Convert.ToInt64(_currentResult).ToString();
         _oldDistanceX = _currentResult;
