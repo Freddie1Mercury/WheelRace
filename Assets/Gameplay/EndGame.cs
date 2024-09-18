@@ -9,6 +9,7 @@ public class EndGame : MonoBehaviour
 
     [SerializeField] private WheelController _wheelController;
     [SerializeField] private MoneyManager _moneyManager;
+    [SerializeField] private DistanceCounter _distanceCounter;
 
     [SerializeField] private GameObject _deathPanel;
     [SerializeField] private GameObject _wheel;
@@ -35,7 +36,7 @@ public class EndGame : MonoBehaviour
                 UiElement.SetActive(false);
             }
             _moneyManager.AddMoneyForLastSession();
-            Debug.Log("Гений алгоритма");
+            _distanceCounter._distanceConterText.text = 0.ToString();
         }
 
     }

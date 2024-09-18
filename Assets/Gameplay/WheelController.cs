@@ -12,10 +12,11 @@ public class WheelController : MonoBehaviour
 
     public float CooldownDashForward { get => _cooldownDashForward; set => _cooldownDashForward = value < 0 ? 0 : value; }
     public int DashForwardForce { get => _dashForwardForce; set => _dashForwardForce = value < 0 ? 0 : value; }
+    public int StartForce { get => _startForce; set => _startForce = value < 0 ? 0 : value; }
     public bool WheelIsLive => _wheelIslive;
 
     [SerializeField] private EndGame _endGame;
-    [SerializeField] private Rigidbody _rigedbodyWheel;
+    [SerializeField] private Rigidbody _rigidbodyWheel;
     [SerializeField] private int _startForce;
     [SerializeField] private GameObject _dashForwardButton;
     [SerializeField] private Upgrades _upgrades;
@@ -27,6 +28,7 @@ public class WheelController : MonoBehaviour
         _remainingTimeUntilDashForward = _cooldownDashForward;
         StartCoroutine(CheckDeath());
         _startForce = 30;
+        Debug.Log(StartForce);
     }
 
     private void Update()
@@ -46,10 +48,10 @@ public class WheelController : MonoBehaviour
     {
         while (true)
         {
-            if (_rigedbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
+            if (_rigidbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
             {
                 yield return new WaitForSeconds(2);
-                if (_rigedbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
+                if (_rigidbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
                 {
                     _wheelIslive = false;
                     // костыль
@@ -65,23 +67,23 @@ public class WheelController : MonoBehaviour
         }
     }
 
-    public void StartForce()
+    public void AddStartForce()
     {
         if (_upgrades.DashForwardLevel > 0) { _dashForwardButton.SetActive(true); }
 
         _wheelIslive = true;
-        _rigedbodyWheel.isKinematic = false;
-        _rigedbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
+        _rigidbodyWheel.isKinematic = false;
+        _rigidbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
     }
 
     public void DashLeft()
     {
-        _rigedbodyWheel.AddForce(new Vector3(0, 0, -20), ForceMode.Impulse);
+        _rigidbodyWheel.AddForce(new Vector3(0, 0, -20), ForceMode.Impulse);
     }
 
     public void DashRight()
     {
-        _rigedbodyWheel.AddForce(new Vector3(0, 0, 20), ForceMode.Impulse);
+        _rigidbodyWheel.AddForce(new Vector3(0, 0, 20), ForceMode.Impulse);
     }
 
     public void DashForward()
@@ -90,7 +92,7 @@ public class WheelController : MonoBehaviour
         if (_dashForwardImage.fillAmount == 1)
         {
             _remainingTimeUntilDashForward = 0;
-            _rigedbodyWheel.AddForce(new Vector3(-_dashForwardForce, 0, 0), ForceMode.Impulse);
+            _rigidbodyWheel.AddForce(new Vector3(-_dashForwardForce, 0, 0), ForceMode.Impulse);
         }
     }
 }

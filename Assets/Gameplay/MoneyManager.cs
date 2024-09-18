@@ -6,26 +6,40 @@ using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
 {
-    private float _allMoney;
+    private float _allMoney = 1000;
     private float _moneyFromLastSession;
-    private float _needMoneyForUpgradeIncome = 100;
-    private float _needMoneyForUpgradeDashForward = 100;
-    private float _needMoneyForUpgradeCooldownDashForward = 100;
+    private float _moneyMultipier = 1;
 
-    public float NeedMoneyForUpgradeIncome { get => _needMoneyForUpgradeIncome; set => _needMoneyForUpgradeIncome = value < 0 ? 0 : value; }
-    public float NeedMoneyForUpgradeDashForward { get => _needMoneyForUpgradeDashForward; set => _needMoneyForUpgradeDashForward = value < 0 ? 0 : value; }
-    public float NeedMoneyForUpgradeCooldownDashForward { get => _needMoneyForUpgradeCooldownDashForward; set => _needMoneyForUpgradeCooldownDashForward = value < 0 ? 0 : value; }
+    private int _upgradeIncomePrice = 100;
+    private int _upgradeDashForwardPrice = 100;
+    private int _upgradeCooldownDashForwardPrice = 100;
+    private int _upgradeStartForcePrice = 100;
+
+    public float MoneyMultipier { get => _moneyMultipier; set => _moneyMultipier = value < 0 ? 0 : value; }
+    public int UpgradeIncomePrice { get => _upgradeIncomePrice; set => _upgradeIncomePrice = value < 0 ? 0 : value; }
+    public int UpgradeDashForwardPrice { get => _upgradeDashForwardPrice; set => _upgradeDashForwardPrice = value < 0 ? 0 : value; }
+    public int UpgradeCooldownDashForwardPrice { get => _upgradeCooldownDashForwardPrice; set => _upgradeCooldownDashForwardPrice = value < 0 ? 0 : value; }
+    public int UpgradeStartForcePrice { get => _upgradeStartForcePrice; set => _upgradeStartForcePrice = value < 0 ? 0 : value; }
     public float AllMoney { get => _allMoney; set => _allMoney = value < 0 ? 0 : value; }
 
     [SerializeField] private TextMeshProUGUI _allMoneyText;
     [SerializeField] private TextMeshProUGUI _moneyFromLastSessionText;
 
+    [SerializeField] private TextMeshProUGUI _upgradeIncomePriceText;
+    [SerializeField] private TextMeshProUGUI _upgradeDashForwardPriceText;
+    [SerializeField] private TextMeshProUGUI _upgradeCooldownDashForwardPriceText;
+    [SerializeField] private TextMeshProUGUI _upgradeStartForcePriceText;
+
     [SerializeField] private DistanceCounter _distanceCounter;
 
+    private void Start()
+    {
+        UpdateUi();
+    }
 
     public void AddMoneyForLastSession()
     {
-        _moneyFromLastSession = (int)_distanceCounter.OldResult * 100;
+        _moneyFromLastSession = (int)_distanceCounter.OldResult / 10 * _moneyMultipier;
         _allMoney += _moneyFromLastSession;
         UpdateUi();
         _moneyFromLastSession = 0;
@@ -40,10 +54,15 @@ public class MoneyManager : MonoBehaviour
     {
         _allMoneyText.text = _allMoney.ToString();
         _moneyFromLastSessionText.text = _moneyFromLastSession.ToString();
+        _upgradeCooldownDashForwardPriceText.text = _upgradeCooldownDashForwardPrice.ToString();
+        _upgradeDashForwardPriceText.text = _upgradeDashForwardPrice.ToString();
+        _upgradeIncomePriceText.text = _upgradeIncomePrice.ToString();
+        _upgradeStartForcePriceText.text= _upgradeStartForcePrice.ToString();
     }
 
-    public float MultiplyPrice(float currentPrice, float multiplier)
+    public int MultiplyPrice(float currentPrice, float multiplier)
     {
-        return currentPrice * multiplier;
+        float temp = multiplier * currentPrice;
+        return (int)temp;
     }
 }
