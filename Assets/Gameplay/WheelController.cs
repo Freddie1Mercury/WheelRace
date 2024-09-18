@@ -54,9 +54,9 @@ public class WheelController : MonoBehaviour
                 if (_rigidbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
                 {
                     _wheelIslive = false;
-                    // костыль
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     yield return new WaitForSeconds(0.1f);
-                    // костыль закончился
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     _endGame.Death();
                 }
             }

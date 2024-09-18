@@ -429,16 +429,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6999597216707704456, guid: b00bccbea136f384c9167163a1f88952, type: 3}
   m_PrefabInstance: {fileID: 167033671}
   m_PrefabAsset: {fileID: 0}
---- !u!218 &172993336 stripped
-Terrain:
-  m_CorrespondingSourceObject: {fileID: 9203476431347380247, guid: de0fc6ce5defd7a4eb95f563d6ef43f5, type: 3}
-  m_PrefabInstance: {fileID: 9203476431251462959}
-  m_PrefabAsset: {fileID: 0}
---- !u!218 &376416329 stripped
-Terrain:
-  m_CorrespondingSourceObject: {fileID: 5042927827403045984, guid: 905952f4dbb8c254999c3e4ff71a18e4, type: 3}
-  m_PrefabInstance: {fileID: 5042927827098653737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484623017
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +704,17 @@ Transform:
   m_Father: {fileID: 678153870}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &864958762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
+  m_PrefabInstance: {fileID: 8372644779339783847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc839e0fcf3a78f449075074994b778b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,11 +877,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6999597217529979583, guid: b00bccbea136f384c9167163a1f88952, type: 3}
   m_PrefabInstance: {fileID: 167033671}
-  m_PrefabAsset: {fileID: 0}
---- !u!218 &1457938573 stripped
-Terrain:
-  m_CorrespondingSourceObject: {fileID: 2813185982509012037, guid: a41f2242529570148b520210aaeeb53f, type: 3}
-  m_PrefabInstance: {fileID: 2813185983748027592}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458421618
 GameObject:
@@ -1215,16 +1211,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614125159}
   m_CullTransparentMesh: 1
---- !u!218 &1664269554 stripped
-Terrain:
-  m_CorrespondingSourceObject: {fileID: 6439629308355861917, guid: 1cd575e80e467c84d8e6b3203dc6a9a9, type: 3}
-  m_PrefabInstance: {fileID: 6439629307832459631}
-  m_PrefabAsset: {fileID: 0}
---- !u!218 &2052617127 stripped
-Terrain:
-  m_CorrespondingSourceObject: {fileID: 9167007220388272182, guid: 208bc9e8f66051c48b56aa5b5301d4e1, type: 3}
-  m_PrefabInstance: {fileID: 9167007222439832465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117623691 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6999597215557035171, guid: b00bccbea136f384c9167163a1f88952, type: 3}
@@ -1358,7 +1344,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5520479635214505010}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: dfc4ed2eec949d840b4f7ccc7443335f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1378,6 +1364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endGame: {fileID: 52894122}
+  _generateTerrain: {fileID: 864958762}
 --- !u!54 &215918445483679047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1623,6 +1610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TerrainLocationDesert
       objectReference: {fileID: 0}
+    - target: {fileID: 2813185982509012035, guid: a41f2242529570148b520210aaeeb53f, type: 3}
+      propertyPath: m_TagString
+      value: TempTerrains
+      objectReference: {fileID: 0}
     - target: {fileID: 2813185982509012038, guid: a41f2242529570148b520210aaeeb53f, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1723,6 +1714,10 @@ PrefabInstance:
     - target: {fileID: 5042927827403045998, guid: 905952f4dbb8c254999c3e4ff71a18e4, type: 3}
       propertyPath: m_Name
       value: TerrainLocationHalloween
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042927827403045998, guid: 905952f4dbb8c254999c3e4ff71a18e4, type: 3}
+      propertyPath: m_TagString
+      value: TempTerrains
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905952f4dbb8c254999c3e4ff71a18e4, type: 3}
@@ -1889,6 +1884,10 @@ PrefabInstance:
     - target: {fileID: 6439629308355861919, guid: 1cd575e80e467c84d8e6b3203dc6a9a9, type: 3}
       propertyPath: m_Name
       value: TerrainLocationIce
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439629308355861919, guid: 1cd575e80e467c84d8e6b3203dc6a9a9, type: 3}
+      propertyPath: m_TagString
+      value: TempTerrains
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cd575e80e467c84d8e6b3203dc6a9a9, type: 3}
@@ -2142,25 +2141,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
+      propertyPath: gridSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
+      propertyPath: iterSteps
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
+      propertyPath: _wheelController
+      value: 
+      objectReference: {fileID: 215918445483679046}
+    - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
       propertyPath: terrainPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 376416329}
+      objectReference: {fileID: 2813185982509012037, guid: a41f2242529570148b520210aaeeb53f, type: 3}
     - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
       propertyPath: terrainPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 172993336}
+      objectReference: {fileID: 5042927827403045984, guid: 905952f4dbb8c254999c3e4ff71a18e4, type: 3}
     - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
       propertyPath: terrainPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 2052617127}
+      objectReference: {fileID: 9167007220388272182, guid: 208bc9e8f66051c48b56aa5b5301d4e1, type: 3}
     - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
       propertyPath: terrainPrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 1457938573}
+      objectReference: {fileID: 6439629308355861917, guid: 1cd575e80e467c84d8e6b3203dc6a9a9, type: 3}
     - target: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
       propertyPath: terrainPrefabs.Array.data[4]
       value: 
-      objectReference: {fileID: 1664269554}
+      objectReference: {fileID: 9203476431347380247, guid: de0fc6ce5defd7a4eb95f563d6ef43f5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
 --- !u!1 &8783306490398313386
@@ -2695,6 +2706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1614125161}
+  _wheelController: {fileID: 215918445483679046}
 --- !u!1001 &9167007222439832465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2705,6 +2717,10 @@ PrefabInstance:
     - target: {fileID: 9167007220388272180, guid: 208bc9e8f66051c48b56aa5b5301d4e1, type: 3}
       propertyPath: m_Name
       value: TerrainLocationHotSpings
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167007220388272180, guid: 208bc9e8f66051c48b56aa5b5301d4e1, type: 3}
+      propertyPath: m_TagString
+      value: TempTerrains
       objectReference: {fileID: 0}
     - target: {fileID: 9167007220388272185, guid: 208bc9e8f66051c48b56aa5b5301d4e1, type: 3}
       propertyPath: m_RootOrder
@@ -2806,6 +2822,10 @@ PrefabInstance:
     - target: {fileID: 9203476431347380249, guid: de0fc6ce5defd7a4eb95f563d6ef43f5, type: 3}
       propertyPath: m_Name
       value: TerrainLocationSwamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203476431347380249, guid: de0fc6ce5defd7a4eb95f563d6ef43f5, type: 3}
+      propertyPath: m_TagString
+      value: TempTerrains
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de0fc6ce5defd7a4eb95f563d6ef43f5, type: 3}
