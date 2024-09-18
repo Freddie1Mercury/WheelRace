@@ -48,8 +48,12 @@ MonoBehaviour:
   _moneyManager: {fileID: 3786157173979803566}
   _cooldownDashForwardLevelText: {fileID: 0}
   _dashForwardLevelText: {fileID: 0}
+  _incomeLevelText: {fileID: 0}
+  _startForceLevelText: {fileID: 0}
   _dashForwardMaxLevelWarningText: {fileID: 0}
   _cooldownDashForwardMaxLevelWarningText: {fileID: 0}
+  _incomeMaxLevelWarningText: {fileID: 0}
+  _startForceMaxLevelWarningText: {fileID: 0}
 --- !u!1 &3786157173695814049
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelController: {fileID: 0}
   _moneyManager: {fileID: 3786157173979803566}
+  _distanceCounter: {fileID: 0}
   _deathPanel: {fileID: 0}
   _wheel: {fileID: 0}
   _uslessInGameSessionUi: []
@@ -145,6 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allMoneyText: {fileID: 0}
   _moneyFromLastSessionText: {fileID: 0}
+  _upgradeIncomePriceText: {fileID: 0}
+  _upgradeDashForwardPriceText: {fileID: 0}
+  _upgradeCooldownDashForwardPriceText: {fileID: 0}
+  _upgradeStartForcePriceText: {fileID: 0}
   _distanceCounter: {fileID: 0}
 --- !u!1 &3786157174014167170
 GameObject:

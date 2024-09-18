@@ -97,7 +97,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6862832042705500072}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: dfc4ed2eec949d840b4f7ccc7443335f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endGame: {fileID: 0}
-  _rigedbodyWheel: {fileID: 4260531281213012129}
+  _rigidbodyWheel: {fileID: 4260531281213012129}
   _startForce: 0
   _dashForwardButton: {fileID: 0}
   _upgrades: {fileID: 0}
