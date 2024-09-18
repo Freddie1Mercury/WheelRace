@@ -20,6 +20,7 @@ public class WheelController : MonoBehaviour
     [SerializeField] private GameObject _dashForwardButton;
     [SerializeField] private Upgrades _upgrades;
     [SerializeField] private Image _dashForwardImage;
+    [SerializeField] private GenerateTerrain _generateTerrain;
 
     private void Start()
     {
@@ -52,9 +53,7 @@ public class WheelController : MonoBehaviour
                 if (_rigedbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
                 {
                     _wheelIslive = false;
-                    // �������
                     yield return new WaitForSeconds(0.1f);
-                    // ������� ����������
                     _endGame.Death();
                 }
             }
@@ -72,6 +71,8 @@ public class WheelController : MonoBehaviour
         _wheelIslive = true;
         _rigedbodyWheel.isKinematic = false;
         _rigedbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
+
+        StartCoroutine(_generateTerrain.Generate());
     }
 
     public void DashLeft()

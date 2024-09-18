@@ -954,6 +954,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc839e0fcf3a78f449075074994b778b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wheelController: {fileID: 0}
+  terrainPrefabs: []
+  gridSize: 10
+  terrainSize: 200
+  iterSteps: 3
 --- !u!1 &1439792233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1417,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8741abf5ddde65942af117de2227b327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _endGame: {fileID: 0}
+  _rigedbodyWheel: {fileID: 0}
+  _startForce: 0
+  _dashForwardButton: {fileID: 0}
+  _upgrades: {fileID: 0}
+  _dashForwardImage: {fileID: 0}
+  _generateTerrain: {fileID: 0}
 --- !u!64 &7214168198740522042
 MeshCollider:
   m_ObjectHideFlags: 0
