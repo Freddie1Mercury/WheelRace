@@ -36,10 +36,7 @@ public class EndGame : MonoBehaviour
                 UiElement.SetActive(false);
             }
             _moneyManager.AddMoneyForLastSession();
-            _distanceCounter._distanceConterText.text = 0.ToString();
+            //_distanceCounter._distanceConterText.text = "0";
         }
-
     }
-
-    
 }
