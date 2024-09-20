@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    protected IEnumerable WaitEndBuffOrDebuff(int delayInSecond)
+    protected IEnumerator Spin()
     {
-       yield return new WaitForSeconds(delayInSecond);
+        while (true)
+        {
+        yield return null;
+        transform.Rotate(new Vector3(0,180 * Time.deltaTime,0));
+        }
     }
 }

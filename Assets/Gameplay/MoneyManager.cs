@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
@@ -57,12 +58,22 @@ public class MoneyManager : MonoBehaviour
         _upgradeCooldownDashForwardPriceText.text = _upgradeCooldownDashForwardPrice.ToString();
         _upgradeDashForwardPriceText.text = _upgradeDashForwardPrice.ToString();
         _upgradeIncomePriceText.text = _upgradeIncomePrice.ToString();
-        _upgradeStartForcePriceText.text= _upgradeStartForcePrice.ToString();
+        _upgradeStartForcePriceText.text = _upgradeStartForcePrice.ToString();
     }
 
     public int MultiplyPrice(float currentPrice, float multiplier)
     {
         float temp = multiplier * currentPrice;
         return (int)temp;
+    }
+
+     public void AddMoney(int money)
+    {
+        if (money > 0)
+        {
+            _allMoney += money;
+        }
+            UpdateUi();
+
     }
 }
