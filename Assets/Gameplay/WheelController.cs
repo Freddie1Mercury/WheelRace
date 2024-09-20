@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,6 +72,9 @@ public class WheelController : MonoBehaviour
         _wheelIslive = true;
         _rigidbodyWheel.isKinematic = false;
         _rigidbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
+
+        StopCoroutine(_generateTerrain.Generate());
+        StartCoroutine(_generateTerrain.Generate());
     }
 
     public void DashLeft()
@@ -87,7 +89,6 @@ public class WheelController : MonoBehaviour
 
     public void DashForward()
     {
-
         if (_dashForwardImage.fillAmount == 1)
         {
             _remainingTimeUntilDashForward = 0;

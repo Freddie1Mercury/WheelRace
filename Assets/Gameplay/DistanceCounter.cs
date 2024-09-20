@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DistanceCounter : MonoBehaviour
 {
-    
-    public TMP_Text _distanceConterText;
+    [SerializeField]
+    private TMP_Text _distanceConterText;
     [SerializeField]
     private WheelController _wheelController;
 

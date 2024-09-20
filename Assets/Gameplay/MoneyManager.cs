@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
 {
-    private float _allMoney = 1000;
+    private float _allMoney = 100000;
     private float _moneyFromLastSession;
     private float _moneyMultipier = 1;
 
