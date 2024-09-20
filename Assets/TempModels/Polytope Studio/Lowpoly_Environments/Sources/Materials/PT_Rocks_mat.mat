@@ -138,7 +138,7 @@ Material:
     - _GradientONOFF: 1
     - _GradientPower: 5.98
     - _GradientPower1: 4.57
-    - _Metallic: 0
+    - _Metallic: 0.179
     - _Mode: 0
     - _OREEMISSIONONOFF: 1
     - _OcclusionStrength: 1
@@ -147,7 +147,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SNOWONOFF: 0
-    - _Smoothness: 0.321
+    - _Smoothness: 0.028
     - _SmoothnessTextureChannel: 0
     - _SnowAmount: 0.215
     - _SnowCoverage: 0.23
@@ -169,8 +169,8 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+    - _Color: {r: 0.32075468, g: 0.32075468, b: 0.32075468, a: 1}
     - _Color3: {r: 0.81960785, g: 0.060962733, b: 0, a: 0}
     - _DecakEmissionColor: {r: 0, g: 0.84665537, b: 2.4117067, a: 0}
     - _DecalsColor: {r: 0.008939266, g: 0, b: 1, a: 0}

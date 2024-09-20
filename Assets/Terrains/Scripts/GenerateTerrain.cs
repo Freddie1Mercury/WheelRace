@@ -15,7 +15,6 @@ public class GenerateTerrain : MonoBehaviour
     [SerializeField]
     private float iterSteps = 3;
 
-
     public IEnumerator Generate()
     {
         float multiplier = 0;
