@@ -6,20 +6,25 @@ public class AntiGravity : Buff
 {
     private void OnTriggerEnter(Collider other)
     {
-        int delayInSecond = 5;
+        transform.GetComponent<Renderer>().enabled = false;
         if (other.gameObject.GetComponent<Rigidbody>() != null)
         {
             other.gameObject.GetComponent<Rigidbody>().useGravity = false;
         }
-        StartCoroutine(WaitEndBaff(delayInSecond, other.gameObject.GetComponent<Rigidbody>()));
+        StartCoroutine(WaitEndBaff(other.gameObject.GetComponent<Rigidbody>()));
 
 
 
     }
 
-    private IEnumerator WaitEndBaff(int delay, Rigidbody rigidbody)
+    private void Start()
     {
-        yield return new WaitForSeconds(delay);
+        StartCoroutine(Spin());
+    }
+
+    private IEnumerator WaitEndBaff(Rigidbody rigidbody)
+    {
+        yield return new WaitForSeconds(_buffTIme);
         if (rigidbody != null)
         {
             rigidbody.useGravity = true;

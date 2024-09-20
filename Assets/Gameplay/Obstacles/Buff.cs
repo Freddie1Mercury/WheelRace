@@ -5,4 +5,5 @@ using UnityEngine;
 public class Buff : Obstacle
 {
     protected float _buffTIme;
+    protected bool _buffIsActive = false;
 }

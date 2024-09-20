@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Coin : Buff
 {
-    [SerializeField] private MoneyManager _moneyManager;
+     private MoneyManager _moneyManager;
     private void Start()
     {
-    }
-
-    private void Update()
-    {
-        transform.Rotate(0, 180 * Time.deltaTime, 0);
+        StartCoroutine(Spin());
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        _moneyManager = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
         int moneyAdditional = 20;
         _moneyManager.AddMoney(moneyAdditional);
         transform.gameObject.SetActive(false);

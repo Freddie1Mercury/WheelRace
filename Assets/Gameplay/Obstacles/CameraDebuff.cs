@@ -9,11 +9,11 @@ public class CameraDebuff : Debuff
 
     private void Start()
     {
-        Spin();
+        StartCoroutine(Spin());
     }
     private void OnTriggerEnter(Collider other)
     {
-       
+       transform.GetComponent<Renderer>().enabled = false;
         _debuffTime = 10;
         _baseCamera.Priority -= 1;
         StartCoroutine(WaitEndDebuff());
@@ -23,5 +23,6 @@ public class CameraDebuff : Debuff
     {
         yield return new WaitForSeconds(_debuffTime);
         _baseCamera.Priority += 1;
+        transform.gameObject.SetActive(false);
     }
 }

@@ -10,32 +10,41 @@ public class WindGustDebuff : Debuff
     private System.Random _random = new System.Random();
     private void OnTriggerEnter(Collider other)
     {
+        transform.GetComponent<Renderer>().enabled = false;
         if (other.GetComponent<Rigidbody>() != null)
         {
             _debuffTime = 7;
             _debuffIsActive = true;
             _wheelRigidbody = other.GetComponent<Rigidbody>();
         }
-        
+
         _isForceRight = _random.Next(0, 2) == 1;
         StartCoroutine(WaitEndDebuff());
     }
+    private void Start()
+    {
+        StartCoroutine(Spin());
+    }
 
-    private IEnumerator WaitEndDebuff() 
+    private IEnumerator WaitEndDebuff()
     {
         yield return new WaitForSeconds(_debuffTime);
         _debuffIsActive = false;
+        transform.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-        if (_isForceRight)
+        if (_debuffIsActive)
         {
-        if (_debuffIsActive) { _wheelRigidbody.AddForce(new Vector3(0, 0, _force * Time.deltaTime)); }
-        }
-        else
-        {
-            if (_debuffIsActive) { _wheelRigidbody.AddForce(new Vector3(0, 0, -_force * Time.deltaTime)); }
+            if (_isForceRight)
+            {
+                { _wheelRigidbody.AddForce(new Vector3(0, 0, _force * Time.deltaTime)); }
+            }
+            else
+            {
+                if (_debuffIsActive) { _wheelRigidbody.AddForce(new Vector3(0, 0, -_force * Time.deltaTime)); }
+            }
         }
     }
 }
