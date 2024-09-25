@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class CameraDebuff : Debuff
 {
-    [SerializeField] private CinemachineVirtualCamera _baseCamera;
+     private CinemachineVirtualCamera _baseCamera;
 
     private void Start()
     {
+        _baseCamera = GameObject.Find("BaseCamera").GetComponent<CinemachineVirtualCamera>();
         StartCoroutine(Spin());
     }
     private void OnTriggerEnter(Collider other)

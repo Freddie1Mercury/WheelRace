@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6232057771955659379}
   - component: {fileID: 6232057771957084211}
   - component: {fileID: 6467892455144587434}
+  - component: {fileID: -3217275202332328034}
   m_Layer: 0
   m_Name: PrefabBoost
   m_TagString: Untagged
@@ -100,3 +101,16 @@ MonoBehaviour:
   applyForceOnY: 1
   _forceOnX: 35
   _forceOnY: 10
+--- !u!135 &-3217275202332328034
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232057771954566771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12
+  m_Center: {x: 0, y: 0, z: 0}

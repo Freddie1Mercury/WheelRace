@@ -7,26 +7,28 @@ public class WheelController : MonoBehaviour
     private int _dashForwardForce;
     private float _cooldownDashForward;
     private float _remainingTimeUntilDashForward;
-    private bool _wheelIslive = false;
+    public bool WheelIslive = false;
 
     public float CooldownDashForward { get => _cooldownDashForward; set => _cooldownDashForward = value < 0 ? 0 : value; }
     public int DashForwardForce { get => _dashForwardForce; set => _dashForwardForce = value < 0 ? 0 : value; }
     public int StartForce { get => _startForce; set => _startForce = value < 0 ? 0 : value; }
-    public bool WheelIsLive => _wheelIslive;
+    public Rigidbody RigidbodyWheel;
 
-    [SerializeField] private EndGame _endGame;
-    [SerializeField] private Rigidbody _rigidbodyWheel;
     [SerializeField] private int _startForce;
     [SerializeField] private GameObject _dashForwardButton;
-    [SerializeField] private Upgrades _upgrades;
     [SerializeField] private Image _dashForwardImage;
+
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private SoundClips _soundClips;
+    [SerializeField] private Upgrades _upgrades;
+    [SerializeField] private EndGame _endGame;
     [SerializeField] private GenerateTerrain _generateTerrain;
 
     private void Start()
     {
         _cooldownDashForward = 20;
         _remainingTimeUntilDashForward = _cooldownDashForward;
-        StartCoroutine(CheckDeath());
+        StartCoroutine(_endGame.CheckDeath());
         _startForce = 30;
         Debug.Log(StartForce);
     }
@@ -44,34 +46,13 @@ public class WheelController : MonoBehaviour
         }
     }
 
-    private IEnumerator CheckDeath()
-    {
-        while (true)
-        {
-            if (_rigidbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
-            {
-                yield return new WaitForSeconds(2);
-                if (_rigidbodyWheel.velocity.x >= -0.2 && transform.position != _endGame.StartPosition)
-                {
-                    _wheelIslive = false;
-                    yield return new WaitForSeconds(0.1f);
-                    _endGame.Death();
-                }
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-    }
-
     public void AddStartForce()
     {
         if (_upgrades.DashForwardLevel > 0) { _dashForwardButton.SetActive(true); }
 
-        _wheelIslive = true;
-        _rigidbodyWheel.isKinematic = false;
-        _rigidbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
+        WheelIslive = true;
+        RigidbodyWheel.isKinematic = false;
+        RigidbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
 
         StopCoroutine(_generateTerrain.Generate());
         StartCoroutine(_generateTerrain.Generate());
@@ -79,12 +60,14 @@ public class WheelController : MonoBehaviour
 
     public void DashLeft()
     {
-        _rigidbodyWheel.AddForce(new Vector3(0, 0, -20), ForceMode.Impulse);
+        RigidbodyWheel.AddForce(new Vector3(0, 0, -20), ForceMode.Impulse);
+        _audioManager.PlaySound(audioClip: _soundClips.WhooshingSound);
     }
 
     public void DashRight()
     {
-        _rigidbodyWheel.AddForce(new Vector3(0, 0, 20), ForceMode.Impulse);
+        RigidbodyWheel.AddForce(new Vector3(0, 0, 20), ForceMode.Impulse);
+        _audioManager.PlaySound(audioClip: _soundClips.WhooshingSound);
     }
 
     public void DashForward()
@@ -92,7 +75,7 @@ public class WheelController : MonoBehaviour
         if (_dashForwardImage.fillAmount == 1)
         {
             _remainingTimeUntilDashForward = 0;
-            _rigidbodyWheel.AddForce(new Vector3(-_dashForwardForce, 0, 0), ForceMode.Impulse);
+            RigidbodyWheel.AddForce(new Vector3(-_dashForwardForce, 0, 0), ForceMode.Impulse);
         }
     }
 }

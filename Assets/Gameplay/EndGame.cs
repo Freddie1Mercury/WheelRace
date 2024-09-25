@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +37,27 @@ public class EndGame : MonoBehaviour
                 UiElement.SetActive(false);
             }
             _moneyManager.AddMoneyForLastSession();
-            //_distanceCounter._distanceConterText.text = "0";
+        }
+    }
+
+    public IEnumerator CheckDeath()
+    {
+        while (true)
+        {
+            if (_wheelController.RigidbodyWheel.velocity.x >= -0.2 && transform.position != StartPosition)
+            {
+                yield return new WaitForSeconds(2);
+                if (_wheelController.RigidbodyWheel.velocity.x >= -0.2 && transform.position != StartPosition)
+                {
+                   _wheelController.WheelIslive = false;
+                    yield return new WaitForSeconds(0.1f);
+                    Death();
+                }
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 }

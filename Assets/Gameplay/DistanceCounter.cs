@@ -23,7 +23,7 @@ public class DistanceCounter : MonoBehaviour
 
     void Update()
     {
-        if (_wheelController.WheelIsLive == false)
+        if (_wheelController.WheelIslive == false)
             ClearDistance();
 
         _currentResult = Mathf.Abs(transform.position.x - _startXPosition);
