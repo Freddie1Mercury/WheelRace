@@ -602,7 +602,6 @@ MonoBehaviour:
   gridSize: 1
   terrainSize: 200
   iterSteps: 3
-  poolSize: 10
 --- !u!1 &961733124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4937713692712833517, guid: b00bccbea136f384c9167163a1f88952, type: 3}
@@ -1023,7 +1022,6 @@ MonoBehaviour:
   gridSize: 10
   terrainSize: 200
   iterSteps: 3
-  poolSize: 10
 --- !u!114 &1399594010 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3786157173004083491, guid: eb478368e36814d4896133c9feda071a, type: 3}
