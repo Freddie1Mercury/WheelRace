@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AntiGravity : Buff
@@ -24,7 +23,7 @@ public class AntiGravity : Buff
 
     private IEnumerator WaitEndBaff(Rigidbody rigidbody)
     {
-        yield return new WaitForSeconds(_buffTIme);
+        yield return new WaitForSeconds(_buffTime);
         if (rigidbody != null)
         {
             rigidbody.useGravity = true;

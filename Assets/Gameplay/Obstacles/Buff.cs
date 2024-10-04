@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Buff : Obstacle
 {
-    protected float _buffTIme;
+    protected float _buffTime;
+    protected float _remainingTimeUntilEndBuff;
     protected bool _buffIsActive = false;
 }

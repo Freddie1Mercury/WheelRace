@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EndGame : MonoBehaviour
@@ -11,11 +10,12 @@ public class EndGame : MonoBehaviour
     [SerializeField] private WheelController _wheelController;
     [SerializeField] private MoneyManager _moneyManager;
     [SerializeField] private DistanceCounter _distanceCounter;
+    [SerializeField] private GenerateTerrainPool _terrainPool;
+    [SerializeField] private UIManager _uiManager;
 
     [SerializeField] private GameObject _deathPanel;
     [SerializeField] private GameObject _wheel;
 
-    [SerializeField] private List<GameObject> _uslessInGameSessionUi = new List<GameObject>();
 
     private void Awake()
     {
@@ -31,12 +31,9 @@ public class EndGame : MonoBehaviour
             _wheel.transform.GetComponent<Rigidbody>().isKinematic = true;
             _wheel.transform.position = _startPosition;
             _wheel.transform.rotation = _startRotation;
-            // отключения ui который используется в матче
-            foreach (var UiElement in _uslessInGameSessionUi)
-            {
-                UiElement.SetActive(false);
-            }
+            _terrainPool.ClearPool();
             _moneyManager.AddMoneyForLastSession();
+            _uiManager.GameUIDisable();
         }
     }
 

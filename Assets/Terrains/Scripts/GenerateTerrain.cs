@@ -66,7 +66,6 @@ public class GenerateTerrain : MonoBehaviour
         multiplier = 0;
         while (_wheelController.WheelIslive)
         {
-            Debug.Log("multik befor all" + multiplier);
             for (int x = 0; x < gridSize * 200; x += 200)
             {
                 Terrain terrain = terrainPool.Get();  // Берем террейн из пула

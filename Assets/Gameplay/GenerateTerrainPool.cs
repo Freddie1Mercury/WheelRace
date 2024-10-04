@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,38 +5,90 @@ public class GenerateTerrainPool : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _terrainsPrefab = new List<GameObject>();
     [SerializeField] private List<GameObject> _terrainsPool = new List<GameObject>();
-    [SerializeField] private Transform _terrainStartPosition;
+    [SerializeField] private Transform _terrainStartSpawnPosition;
     [SerializeField] private Transform _wheelPosition;
 
-    private void Start()
+    private Vector3 _terrainStartPosition;
+
+    private void Update()
     {
-       InitTerrains();
-    }
-    private void InitTerrains()
-    {
-        foreach (var terrain in _terrainsPrefab)
+        if (_terrainsPool.Count > 0)
         {
-            _terrainsPool.Add(terrain);
+
+            GetTerrainPool();
+            ReleasePool();
         }
     }
 
-    private void GetTerrain()
+    private void Start()
     {
+        _terrainStartPosition = _terrainStartSpawnPosition.position;
+    }
+    public void InitTerrains()
+    {
+        Vector3 temp = _terrainStartSpawnPosition.position;
+        Quaternion terrainStartRotation = _terrainStartSpawnPosition.rotation;
+        temp = new Vector3(_terrainStartSpawnPosition.position.x - 200, _terrainStartSpawnPosition.position.y, _terrainStartSpawnPosition.position.z);
 
+
+        foreach (var item in _terrainsPrefab)
+        {
+                _terrainsPool.Add(Instantiate(item, temp, terrainStartRotation));
+                temp = new Vector3(temp.x - 200, temp.y, temp.z);
+                item.SetActive(true);
+        }
+            
+
+
+    }
+
+    private void GetTerrainPool()
+    {
+        Vector3 lastTerrainPosition;
+        lastTerrainPosition = _terrainsPool[0].GetComponent<Transform>().position;
+
+        foreach (var item in _terrainsPool)
+        {
+            if (item.transform.position.x < lastTerrainPosition.x)
+            {
+                lastTerrainPosition = item.transform.position;
+
+            }
+        }
+
+        foreach (var item in _terrainsPool)
+        {
+            if (!item.activeSelf)
+            {
+                item.transform.position = new Vector3(lastTerrainPosition.x - 200, lastTerrainPosition.y, lastTerrainPosition.z);
+                item.SetActive(true);
+                lastTerrainPosition = item.transform.position;
+            }
+        }
     }
 
     private void ReleasePool()
     {
-        if (_wheelPosition.position.x < _terrainStartPosition.position.x - 600)
+        if (_wheelPosition.position.x < _terrainStartSpawnPosition.position.x - 600)
         {
             for (int i = 0; i < _terrainsPool.Count; i++)
             {
                 if (_terrainsPool[i].transform.position.x > _wheelPosition.position.x)
                 {
-                    _terrainsPool[i].SetActive(true);
+                    _terrainsPool[i].SetActive(false);
                 }
             }
-            _terrainStartPosition.position = new Vector3(_terrainStartPosition.position.x - 600,0,0);
+            _terrainStartSpawnPosition.position = new Vector3(_terrainStartSpawnPosition.position.x - 600, 0, 0);
         }
+    }
+
+    public void ClearPool()
+    {
+        foreach (var item in _terrainsPool)
+        {
+            Destroy(item);
+        }
+        _terrainsPool.Clear();
+        _terrainStartSpawnPosition.position = _terrainStartPosition;
     }
 }

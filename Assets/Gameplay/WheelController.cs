@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,19 +21,23 @@ public class WheelController : MonoBehaviour
     [SerializeField] private SoundClips _soundClips;
     [SerializeField] private Upgrades _upgrades;
     [SerializeField] private EndGame _endGame;
-    [SerializeField] private GenerateTerrain _generateTerrain;
+    [SerializeField] private GenerateTerrainPool _terrainPool;
+    [SerializeField] private UIManager _uiManager;
 
     private void Start()
     {
-        _cooldownDashForward = 20;
+        _cooldownDashForward = 15;
         _remainingTimeUntilDashForward = _cooldownDashForward;
         StartCoroutine(_endGame.CheckDeath());
         _startForce = 30;
-        Debug.Log(StartForce);
     }
 
     private void Update()
     {
+        if (_dashForwardImage.fillAmount == 1)
+        {
+            _remainingTimeUntilDashForward = _cooldownDashForward;
+        }
         if (_remainingTimeUntilDashForward <= _cooldownDashForward)
         {
             _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / _cooldownDashForward;
@@ -48,14 +51,13 @@ public class WheelController : MonoBehaviour
 
     public void AddStartForce()
     {
-        if (_upgrades.DashForwardLevel > 0) { _dashForwardButton.SetActive(true); }
-
+        _uiManager.GameUiEnable();
+        transform.Rotate(0, 0, 1000);
+        _terrainPool.InitTerrains();
         WheelIslive = true;
         RigidbodyWheel.isKinematic = false;
         RigidbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
 
-        StopCoroutine(_generateTerrain.Generate());
-        StartCoroutine(_generateTerrain.Generate());
     }
 
     public void DashLeft()
@@ -75,6 +77,7 @@ public class WheelController : MonoBehaviour
         if (_dashForwardImage.fillAmount == 1)
         {
             _remainingTimeUntilDashForward = 0;
+            _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / _cooldownDashForward;
             RigidbodyWheel.AddForce(new Vector3(-_dashForwardForce, 0, 0), ForceMode.Impulse);
         }
     }

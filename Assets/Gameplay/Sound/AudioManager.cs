@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Transform _soundsPlayersPosition;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Slider _backGroundMusicSlider;
+     
 
 
 
@@ -46,6 +47,21 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(AudioClip audioClip,float volume = 0.5f, float pithc = 1)
     {
         int counterActiveSoundPlayer = 0;
+
+        foreach (var soundPlayer in _soundPlayers)
+        {
+            if (soundPlayer.GetComponent<AudioSource>().isPlaying)
+            {
+                counterActiveSoundPlayer++;
+            }
+            if (counterActiveSoundPlayer == _soundPlayers.Count)
+            {
+                CreateSoundsPlayers();
+                break;
+
+            }
+        }
+
         foreach(var soundPlayer in _soundPlayers)
         {
             if (!soundPlayer.GetComponent<AudioSource>().isPlaying)
@@ -63,10 +79,6 @@ public class AudioManager : MonoBehaviour
             if (soundPlayer.GetComponent<AudioSource>().isPlaying)
             {
                 counterActiveSoundPlayer++;
-            }
-            if (counterActiveSoundPlayer == _soundPlayers.Count)
-            {
-                CreateSoundsPlayers();
             }
         }
     }

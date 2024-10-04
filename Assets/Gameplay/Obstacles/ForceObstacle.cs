@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ForceObstacle : Buff
@@ -15,7 +13,6 @@ public class ForceObstacle : Buff
             other.GetComponent<Rigidbody>().AddForce(new Vector3(-_forceOnX,0,0), ForceMode.Impulse);
         if (applyForceOnY)
             other.GetComponent<Rigidbody>().AddForce(new Vector3(0, _forceOnY, 0), ForceMode.Impulse);
-        Debug.Log("dsdsds");
         transform.gameObject.SetActive(false);
     }
 
