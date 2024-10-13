@@ -31,8 +31,7 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
 
     public int GetPool(bool isBuff)
     {
-
-        int buffOrDebuffBarIndex = 0;
+        int numberOfOccupiedObject = 0;
         if (isBuff)
         {
 
@@ -45,9 +44,9 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
                 }
                 if (BuffBars[i].activeSelf)
                 {
-                    buffOrDebuffBarIndex++;
+                    numberOfOccupiedObject++;
                 }
-                if (buffOrDebuffBarIndex == BuffBars.Count - 1)
+                if (numberOfOccupiedObject == BuffBars.Count)
                 {
                     CreatePool(isBuff);
                     BuffBars[BuffBars.Count - 1].SetActive(true);
@@ -70,9 +69,9 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
                 }
                 if (DebuffBars[i].activeSelf)
                 {
-                    buffOrDebuffBarIndex++;
+                    numberOfOccupiedObject++;
                 }
-                if (buffOrDebuffBarIndex == DebuffBars.Count - 1)
+                if (numberOfOccupiedObject == DebuffBars.Count)
                 {
                     CreatePool(isBuff);
                     DebuffBars[DebuffBars.Count - 1].SetActive(true);
@@ -86,6 +85,7 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
 
     public void ReleasePool(bool isBuff, int buffOrDebuffBarIndex)
     {
+        Debug.Log("ReleasePool");
         if (isBuff)
         {
             BuffBars[buffOrDebuffBarIndex].GetComponent<Image>().fillAmount = 1;
@@ -100,6 +100,7 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
 
     private void CreatePool(bool isBuff)
     {
+        Debug.Log("CreatePool");
         if (isBuff)
         {
             if (BuffBars.Count == 0)
@@ -110,15 +111,15 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
             }
             else
             {
-                RectTransform buffBarnewPosition = new RectTransform();
-                buffBarnewPosition.anchoredPosition = new Vector2(BuffBars[BuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition.x + 150, BuffBars[BuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition.y);
+                RectTransform lastBuffBarRect = BuffBars[BuffBars.Count - 1].GetComponent<RectTransform>();
+                Vector2 newBuffPosition = new Vector2(lastBuffBarRect.anchoredPosition.x + 200, lastBuffBarRect.anchoredPosition.y);
                 BuffBars.Add(Instantiate(_buffBarPrefab));
-                BuffBars[BuffBars.Count-1].GetComponent<RectTransform>().anchoredPosition = buffBarnewPosition.anchoredPosition;
+                BuffBars[BuffBars.Count - 1].transform.SetParent(_canvas);
+                BuffBars[BuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = newBuffPosition;
             }
         }
         else
         {
-
             if (DebuffBars.Count == 0)
             {
                 DebuffBars.Add(Instantiate(_debuffBarPrefab));
@@ -127,13 +128,13 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
             }
             else
             {
-                RectTransform debuffBarnewPosition = new RectTransform();
-                debuffBarnewPosition.anchoredPosition = new Vector2(DebuffBars[DebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition.x + 150, DebuffBars[DebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition.y);
+                RectTransform lastDebuffBarRect = DebuffBars[DebuffBars.Count - 1].GetComponent<RectTransform>();
+                Vector2 newDebuffPosition = new Vector2(lastDebuffBarRect.anchoredPosition.x + 200, lastDebuffBarRect.anchoredPosition.y);
                 DebuffBars.Add(Instantiate(_debuffBarPrefab));
-                DebuffBars[BuffBars.Count - 1].transform.SetParent(_canvas);
-                DebuffBars[DebuffBars.Count-1].GetComponent<RectTransform>().anchoredPosition = debuffBarnewPosition.anchoredPosition;
+                DebuffBars[DebuffBars.Count - 1].transform.SetParent(_canvas);
+                DebuffBars[DebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = newDebuffPosition;
             }
-
         }
+    
     }
 }

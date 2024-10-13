@@ -1,17 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AntiGravity : Buff
 {
     private void OnTriggerEnter(Collider other)
     {
-        transform.GetComponent<Renderer>().enabled = false;
+        OffObstacle();
         if (other.gameObject.GetComponent<Rigidbody>() != null)
         {
             other.gameObject.GetComponent<Rigidbody>().useGravity = false;
         }
-        StartCoroutine(WaitEndBaff(other.gameObject.GetComponent<Rigidbody>()));
-
+        StartCoroutine(WaitEndBaff(other.GetComponent<Rigidbody>()));
+        _buffBarIndex = _buffAndDebuffBarsPool.GetPool(true);
+        _remainingTimeUntilEndBuff = _buffTime;
 
 
     }
@@ -19,6 +21,21 @@ public class AntiGravity : Buff
     private void Start()
     {
         StartCoroutine(Spin());
+        _buffAndDebuffBarsPool = GameObject.Find("BuffAndDebuffBarsPool").GetComponent<BuffAndDebuffBarsPool>();
+
+    }
+
+    private void Update()
+    {
+        if (transform.GetComponent<Renderer>().enabled == false)
+        {
+            _remainingTimeUntilEndBuff -= Time.deltaTime;
+            _buffAndDebuffBarsPool.BuffBars[_buffBarIndex].GetComponent<Image>().fillAmount = _remainingTimeUntilEndBuff / _buffTime;
+            if (_buffAndDebuffBarsPool.BuffBars[_buffBarIndex].GetComponent<Image>().fillAmount == 0)
+            {
+                _buffAndDebuffBarsPool.ReleasePool(true, _buffBarIndex);
+            }
+        }
     }
 
     private IEnumerator WaitEndBaff(Rigidbody rigidbody)
@@ -27,7 +44,7 @@ public class AntiGravity : Buff
         if (rigidbody != null)
         {
             rigidbody.useGravity = true;
-            transform.gameObject.SetActive(false);
+            OnnObstacle();
         }
     }
 }

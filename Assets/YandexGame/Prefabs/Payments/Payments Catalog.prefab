@@ -184,6 +184,7 @@ MonoBehaviour:
   it: 
   de: 
   hi: 
+  changeOnlyFont: 0
   fontNumber: 0
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
@@ -259,8 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPurchases: 1
   rootSpawnPurchases: {fileID: 8641676097431393183}
-  purchasePrefab: {fileID: 1072245818015344007, guid: 85a12be5ffc39d349bf6dccb22596603,
-    type: 3}
+  purchasePrefab: {fileID: 1072245818015344007, guid: 85a12be5ffc39d349bf6dccb22596603, type: 3}
   updateListMethod: 0
   purchases: []
 --- !u!222 &8641676098531048173

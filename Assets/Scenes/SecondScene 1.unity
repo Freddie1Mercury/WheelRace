@@ -291,17 +291,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb478368e36814d4896133c9feda071a, type: 3}
---- !u!114 &166157132 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8372644780030413278, guid: 04d0235c8bdfd6443b2484886f0741ae, type: 3}
-  m_PrefabInstance: {fileID: 1861454206}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc839e0fcf3a78f449075074994b778b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &167033671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1549,6 +1538,9 @@ MonoBehaviour:
   _backGroundMusic:
   - {fileID: 8300000, guid: 8445216ddd9e8a44eba66e72406dac63, type: 3}
   - {fileID: 8300000, guid: c86b9f7c0acd3a1478d940009077ce7f, type: 3}
+  _soundPlayers: []
+  _soundPlayerPrefab: {fileID: 0}
+  _soundsPlayersPosition: {fileID: 0}
   _audioSource: {fileID: 215918445483679044}
   _backGroundMusicSlider: {fileID: 1845857732}
 --- !u!81 &215918445483679043
@@ -1681,13 +1673,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8741abf5ddde65942af117de2227b327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endGame: {fileID: 988990407}
-  _rigidbodyWheel: {fileID: 215918445483679047}
+  WheelIslive: 0
+  RigidbodyWheel: {fileID: 0}
   _startForce: 120
   _dashForwardButton: {fileID: 1059583408}
-  _upgrades: {fileID: 1651738086}
   _dashForwardImage: {fileID: 1059583411}
-  _generateTerrain: {fileID: 166157132}
+  _audioManager: {fileID: 0}
+  _soundClips: {fileID: 0}
+  _upgrades: {fileID: 1651738086}
+  _endGame: {fileID: 988990407}
+  _terrainPool: {fileID: 0}
+  _uiManager: {fileID: 0}
 --- !u!54 &215918445483679047
 Rigidbody:
   m_ObjectHideFlags: 0

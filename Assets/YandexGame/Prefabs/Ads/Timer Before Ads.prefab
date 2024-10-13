@@ -150,11 +150,14 @@ MonoBehaviour:
   secondObjects:
   - {fileID: 8275278891352812731}
   - {fileID: 8275278891031627906}
-  realtimeSeconds: 0
+  pauseTo_ViewingAdsYG: 1
   onShowTimer:
     m_PersistentCalls:
       m_Calls: []
   onHideTimer:
+    m_PersistentCalls:
+      m_Calls: []
+  doPause:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8275278891031627906

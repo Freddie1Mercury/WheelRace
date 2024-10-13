@@ -295,8 +295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLoad: 0
   rawImage: {fileID: 340534004835935824}
+  spriteImage: {fileID: 0}
   urlImage: 
   loadAnimObj: {fileID: 340534004958424557}
+  debug: 0
 --- !u!1 &340534006149981299
 GameObject:
   m_ObjectHideFlags: 0

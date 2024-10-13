@@ -1418,13 +1418,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8741abf5ddde65942af117de2227b327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endGame: {fileID: 0}
-  _rigidbodyWheel: {fileID: 0}
+  WheelIslive: 0
+  RigidbodyWheel: {fileID: 0}
   _startForce: 0
   _dashForwardButton: {fileID: 0}
-  _upgrades: {fileID: 0}
   _dashForwardImage: {fileID: 0}
-  _generateTerrain: {fileID: 0}
+  _audioManager: {fileID: 0}
+  _soundClips: {fileID: 0}
+  _upgrades: {fileID: 0}
+  _endGame: {fileID: 0}
+  _terrainPool: {fileID: 0}
+  _uiManager: {fileID: 0}
 --- !u!64 &7214168198740522042
 MeshCollider:
   m_ObjectHideFlags: 0

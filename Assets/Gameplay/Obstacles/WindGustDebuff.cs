@@ -6,19 +6,17 @@ public class WindGustDebuff : Debuff
 {
     private Rigidbody _wheelRigidbody;
 
-    private int _debuffBarIndex;
     private int _force = 600;
 
     private bool _isForceRight;
 
     private System.Random _random = new System.Random();
-    private BuffAndDebuffBarsPool _buffAndDebuffBarsPool;
 
 
 
     private void OnTriggerEnter(Collider other)
     {
-        transform.GetComponent<Renderer>().enabled = false;
+        OffObstacle();
         if (other.GetComponent<Rigidbody>() != null)
         {
             _debuffTime = 7;
@@ -30,7 +28,7 @@ public class WindGustDebuff : Debuff
         _isForceRight = _random.Next(0, 2) == 1;
         StartCoroutine(WaitEndDebuff());
         _debuffBarIndex = _buffAndDebuffBarsPool.GetPool(false);
-        Debug.Log(_debuffBarIndex);
+        _remainingTimeUntilEndDebuff = _debuffTime;
     }
     private void Start()
     {
@@ -41,11 +39,14 @@ public class WindGustDebuff : Debuff
 
     private void Update()
     {
-        _remainingTimeUntilEndDebuff -= Time.deltaTime;
-        _buffAndDebuffBarsPool.DebuffBars[_debuffBarIndex].GetComponent<Image>().fillAmount = _remainingTimeUntilEndDebuff / _debuffTime;
-        if (_buffAndDebuffBarsPool.DebuffBars[_debuffBarIndex].GetComponent<Image>().fillAmount == 0)
+        if (transform.GetComponent<Renderer>().enabled == false)
         {
-            _buffAndDebuffBarsPool.ReleasePool(false, _debuffBarIndex);
+            _remainingTimeUntilEndDebuff -= Time.deltaTime;
+            _buffAndDebuffBarsPool.DebuffBars[_debuffBarIndex].GetComponent<Image>().fillAmount = _remainingTimeUntilEndDebuff / _debuffTime;
+            if (_buffAndDebuffBarsPool.DebuffBars[_debuffBarIndex].GetComponent<Image>().fillAmount == 0)
+            {
+                _buffAndDebuffBarsPool.ReleasePool(false, _debuffBarIndex);
+            }
         }
     }
 
@@ -53,7 +54,7 @@ public class WindGustDebuff : Debuff
     {
         yield return new WaitForSeconds(_debuffTime);
         _debuffIsActive = false;
-        transform.gameObject.SetActive(false);
+        OnnObstacle();
     }
 
     private void FixedUpdate()
