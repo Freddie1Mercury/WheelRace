@@ -12,6 +12,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] private DistanceCounter _distanceCounter;
     [SerializeField] private GenerateTerrainPool _terrainPool;
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private Obstacle _obstacle;
 
     [SerializeField] private GameObject _deathPanel;
     [SerializeField] private GameObject _wheel;
@@ -34,6 +35,7 @@ public class EndGame : MonoBehaviour
             _terrainPool.ClearPool();
             _moneyManager.AddMoneyForLastSession();
             _uiManager.GameUIDisable();
+            _obstacle.ClearBuffAndDebuff();
         }
     }
 

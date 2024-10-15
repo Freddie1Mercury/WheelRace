@@ -47,6 +47,15 @@ public class WheelController : MonoBehaviour
         {
             _dashForwardImage.fillAmount = 1;
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            DashLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            DashRight();
+        }
     }
 
     public void AddStartForce()

@@ -58,10 +58,10 @@ public class GenerateTerrainPool : MonoBehaviour
 
         foreach (var item in _terrainsPool)
         {
-            if (!item.activeSelf)
+            if (!item.GetComponent<Terrain>().enabled)
             {
                 item.transform.position = new Vector3(lastTerrainPosition.x - 200, lastTerrainPosition.y, lastTerrainPosition.z);
-                item.SetActive(true);
+                item.GetComponent<Terrain>().enabled = true;
                 lastTerrainPosition = item.transform.position;
             }
         }
@@ -75,7 +75,7 @@ public class GenerateTerrainPool : MonoBehaviour
             {
                 if (_terrainsPool[i].transform.position.x > _wheelPosition.position.x)
                 {
-                    _terrainsPool[i].SetActive(false);
+                    _terrainsPool[i].GetComponent<Terrain>().enabled = false;
                 }
             }
             _terrainStartSpawnPosition.position = new Vector3(_terrainStartSpawnPosition.position.x - 600, 0, 0);

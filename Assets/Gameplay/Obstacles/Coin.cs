@@ -1,18 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class Coin : Buff
 {
-     private MoneyManager _moneyManager;
+    private MoneyManager _moneyManager;
+    private Upgrades _upgrades;
     private void Start()
     {
         StartCoroutine(Spin());
+        _moneyManager = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _moneyManager = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
-        int moneyAdditional = 20;
-        _moneyManager.AddMoney(moneyAdditional);
-        transform.gameObject.SetActive(false);
+        transform.GetComponent<Renderer>().enabled = false;
+        float moneyAdditional = 20 * _moneyManager.MoneyMultipier;
+        _moneyManager.AddMoney((int)moneyAdditional);
+        StartCoroutine(ResetBuff());
+    }
+
+    private IEnumerator ResetBuff()
+    {
+        yield return new WaitForSeconds(3);
+        transform.GetComponent<Renderer>().enabled = true;
     }
 }

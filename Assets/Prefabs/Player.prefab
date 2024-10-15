@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2057655572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057655573}
+  m_Layer: 0
+  m_Name: SoundPlayersPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057655573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057655572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.263, y: 0.145, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5177993017918894374}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6862832042705500072
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,7 +50,7 @@ GameObject:
   - component: {fileID: 4260531281213012130}
   - component: {fileID: 4260531281213012184}
   m_Layer: 0
-  m_Name: wheel
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +67,8 @@ Transform:
   m_LocalPosition: {x: 34.17, y: 105, z: 27.33}
   m_LocalScale: {x: 8, y: 8, z: 9}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2057655573}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -132,12 +164,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8741abf5ddde65942af117de2227b327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endGame: {fileID: 0}
-  _rigidbodyWheel: {fileID: 4260531281213012129}
+  WheelIslive: 0
+  RigidbodyWheel: {fileID: 4260531281213012129}
   _startForce: 0
   _dashForwardButton: {fileID: 0}
-  _upgrades: {fileID: 0}
   _dashForwardImage: {fileID: 0}
+  _audioManager: {fileID: 4260531281213012188}
+  _soundClips: {fileID: 0}
+  _upgrades: {fileID: 0}
+  _endGame: {fileID: 0}
+  _terrainPool: {fileID: 0}
+  _uiManager: {fileID: 0}
 --- !u!114 &4260531281213012188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +190,9 @@ MonoBehaviour:
   _backGroundMusic:
   - {fileID: 8300000, guid: 8445216ddd9e8a44eba66e72406dac63, type: 3}
   - {fileID: 8300000, guid: c86b9f7c0acd3a1478d940009077ce7f, type: 3}
+  _soundPlayers: []
+  _soundPlayerPrefab: {fileID: 2589086405318734486, guid: 02051b4a17cf5674f811904c0fb5bae2, type: 3}
+  _soundsPlayersPosition: {fileID: 2057655573}
   _audioSource: {fileID: 4260531281213012130}
   _backGroundMusicSlider: {fileID: 0}
 --- !u!81 &4260531281213012131
