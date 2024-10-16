@@ -7,13 +7,13 @@ public class Obstacle : MonoBehaviour
 {
     protected BuffAndDebuffBarsPool _buffAndDebuffBarsPool;
     protected GameObject _wheel;
-    private CinemachineVirtualCamera _baseCamera;
+    private CinemachineVirtualCamera _mainCamera;
 
     private void Start()
     {
         _wheel = GameObject.Find("Player");
         _buffAndDebuffBarsPool = GameObject.Find("BuffAndDebuffBarsPool").GetComponent<BuffAndDebuffBarsPool>();
-        _baseCamera = GameObject.Find("BaseCamera").GetComponent<CinemachineVirtualCamera>();
+        _mainCamera = GameObject.Find("BaseCamera").GetComponent<CinemachineVirtualCamera>();
     }
     protected IEnumerator Spin()
     {
@@ -142,7 +142,7 @@ public class Obstacle : MonoBehaviour
 
         wheelRigidbody.useGravity = true;
         wheelRigidbody.drag = 0.2f;
-        _baseCamera.Priority += 1;
+        _mainCamera.Priority += 1;
 
 
     }
