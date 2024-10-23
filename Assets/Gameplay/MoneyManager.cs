@@ -12,12 +12,12 @@ public class MoneyManager : MonoBehaviour
     private int _upgradeCooldownDashForwardPrice = 100;
     private int _upgradeStartForcePrice = 100;
 
-    public float MoneyMultipier { get => _moneyMultipier; set => _moneyMultipier = value < 0 ? 0 : value; }
     public int UpgradeIncomePrice { get => _upgradeIncomePrice; set => _upgradeIncomePrice = value < 0 ? 0 : value; }
     public int UpgradeDashForwardPrice { get => _upgradeDashForwardPrice; set => _upgradeDashForwardPrice = value < 0 ? 0 : value; }
     public int UpgradeCooldownDashForwardPrice { get => _upgradeCooldownDashForwardPrice; set => _upgradeCooldownDashForwardPrice = value < 0 ? 0 : value; }
     public int UpgradeStartForcePrice { get => _upgradeStartForcePrice; set => _upgradeStartForcePrice = value < 0 ? 0 : value; }
-    public float AllMoney { get => _allMoney; set => _allMoney = value < 0 ? 0 : value; }
+    public float MoneyMultipier { get => _moneyMultipier; set => _moneyMultipier = value < 0 ? 0 : value; }
+    public float AllMoney { get => _allMoney;}
 
     [SerializeField] private TextMeshProUGUI _allMoneyText;
     [SerializeField] private TextMeshProUGUI _moneyFromLastSessionText;
@@ -63,12 +63,21 @@ public class MoneyManager : MonoBehaviour
         return (int)temp;
     }
 
-     public void AddMoney(int money)
+    public void AddMoney(int money)
     {
         if (money > 0)
         {
             _allMoney += money;
         }
-            UpdateUi();
+        UpdateUi();
+    }
+
+    public void DeductMoney(int money)
+    {
+        if (money < _allMoney)
+        {
+            _allMoney -= money;
+        }
+        UpdateUi();
     }
 }
