@@ -100,6 +100,7 @@ public class BuffAndDebuffBarsPool : MonoBehaviour
 
     private void CreatePool(bool isBuff)
     {
+        Debug.Log("CreatePool");
         if (isBuff)
         {
             if (BuffBars.Count == 0)

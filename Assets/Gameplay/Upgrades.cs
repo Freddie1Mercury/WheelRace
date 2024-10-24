@@ -39,7 +39,7 @@ public class Upgrades : MonoBehaviour
             return;
         }
 
-        _moneyManager.DeductMoney(_moneyManager.UpgradeDashForwardPrice);
+        _moneyManager.AllMoney -= _moneyManager.UpgradeDashForwardPrice;
         float multiplier = 1.3f;
         _moneyManager.UpgradeDashForwardPrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeDashForwardPrice, multiplier);
         _moneyManager.UpdateUi();
@@ -65,7 +65,7 @@ public class Upgrades : MonoBehaviour
             return;
         }
 
-        _moneyManager.DeductMoney(_moneyManager.UpgradeCooldownDashForwardPrice);
+        _moneyManager.AllMoney -= _moneyManager.UpgradeCooldownDashForwardPrice;
         float multiplier = 1.3f;
         _moneyManager.UpgradeCooldownDashForwardPrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeCooldownDashForwardPrice, multiplier);
         _moneyManager.UpdateUi();
@@ -92,7 +92,7 @@ public class Upgrades : MonoBehaviour
         }
         _incomeLevel += 1;
         _incomeLevelText.text = _incomeLevel.ToString();
-        _moneyManager.DeductMoney(_moneyManager.UpgradeIncomePrice);
+        _moneyManager.AllMoney -= _moneyManager.UpgradeIncomePrice;
         float multiplier = 1.5f;
         _moneyManager.UpgradeIncomePrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeIncomePrice, multiplier);
         _moneyManager.MoneyMultipier += 1;
@@ -117,7 +117,7 @@ public class Upgrades : MonoBehaviour
 
         _startForceLevel += 1;
         _startForceLevelText.text = _startForceLevel.ToString();
-        _moneyManager.DeductMoney(_moneyManager.UpgradeStartForcePrice);
+        _moneyManager.AllMoney -= _moneyManager.UpgradeStartForcePrice;
         float multiplier = 1.5f;
         _moneyManager.UpgradeStartForcePrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeStartForcePrice, multiplier);
         _wheelController.StartForce += 10;
@@ -131,6 +131,6 @@ public class Upgrades : MonoBehaviour
 
     }
 
-
+   
 }
 
