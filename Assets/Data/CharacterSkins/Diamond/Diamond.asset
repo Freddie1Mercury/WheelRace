@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca1e80e4f55844b4447867c964c06, type: 3}
+  m_Name: Diamond
+  m_EditorClassIdentifier: 
+  _skinMesh: {fileID: 4300000, guid: 94c1a6d8a8d20b548b6960fa81ab9d9c, type: 3}
+  _skinMaterial: {fileID: 2100000, guid: a2ae353676b97e345bff51ce98972ad9, type: 2}
+  _skinCellSprite: {fileID: 21300000, guid: b5d52ef6aba043a4e9d57216863348ec, type: 3}
+  _skinPrice: 1500
