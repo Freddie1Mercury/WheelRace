@@ -30,6 +30,9 @@ public class SkinShopCell : MonoBehaviour
         _skinShopController.SkinShopCells.Add(transform.gameObject);
         _cellIndex = _skinShopController.SkinShopCells.Count - 1;
 
+        temp = transform.Find("Price/PriceText");
+        Debug.Log("temp" + temp.name);
+        _priceText = temp.GetComponent<TextMeshProUGUI>();
         _priceText.text = CharacterSkin.SkinPrice.ToString();
 
         _cellButton.onClick.AddListener(() => _skinShopController.SelectSkin(_cellIndex));
@@ -47,17 +50,12 @@ public class SkinShopCell : MonoBehaviour
         IsPurchasing = true;
     }
 
-    public void ShowSkinSelectionIndicator()
+    public void HideORShowSkinSelectionIndicator(bool show)
     {
         Transform temp = transform.Find("Selected");
         GameObject selectedImage = temp.gameObject;
-        selectedImage.SetActive(true);
+        selectedImage.SetActive(show);
     }
 
-    public void HideSkinSelectionIndicator()
-    {
-        Transform temp = transform.Find("Selected");
-        GameObject selectedImage = temp.gameObject;
-        selectedImage.SetActive(false);
-    }
+   
 }

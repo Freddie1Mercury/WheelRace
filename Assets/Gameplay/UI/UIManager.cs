@@ -6,14 +6,15 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Upgrades _upgrades;
 
-    [SerializeField] private GameObject _dashForwardButton;
     [SerializeField] private RectTransform _startSpawnBuffOrDebuffBarPosition;
+
+    [SerializeField] private GameObject _dashForwardButton;
     [SerializeField] private GameObject _buffBarPrefab;
     [SerializeField] private GameObject _debuffBarPrefab;
 
     [SerializeField] private List<GameObject> _gameUi = new List<GameObject>();
-
-    [SerializeField] private List<GameObject> BuffOrDebuffBars = new List<GameObject>();
+    [SerializeField] private List<GameObject> _buffOrDebuffBars = new List<GameObject>();
+    [SerializeField] private List<GameObject> _lobbyUI = new List<GameObject>();
 
     private void Start()
     {
@@ -48,18 +49,18 @@ public class UIManager : MonoBehaviour
     public int CreateBuffOrDebuffSlider(bool isBuff)
     {
         int barIndex;
-        if (BuffOrDebuffBars.Count == 0)
+        if (_buffOrDebuffBars.Count == 0)
         {
             if (isBuff)
             {
-                BuffOrDebuffBars.Add(Instantiate(_buffBarPrefab));
-                BuffOrDebuffBars[BuffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = _startSpawnBuffOrDebuffBarPosition.anchoredPosition;
-                
-            }    
+                _buffOrDebuffBars.Add(Instantiate(_buffBarPrefab));
+                _buffOrDebuffBars[_buffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = _startSpawnBuffOrDebuffBarPosition.anchoredPosition;
+
+            }
             else
             {
-                BuffOrDebuffBars.Add(Instantiate(_debuffBarPrefab));
-                BuffOrDebuffBars[BuffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = _startSpawnBuffOrDebuffBarPosition.anchoredPosition;
+                _buffOrDebuffBars.Add(Instantiate(_debuffBarPrefab));
+                _buffOrDebuffBars[_buffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = _startSpawnBuffOrDebuffBarPosition.anchoredPosition;
             }
 
         }
@@ -67,19 +68,27 @@ public class UIManager : MonoBehaviour
         {
             if (isBuff)
             {
-                BuffOrDebuffBars.Add(Instantiate(_buffBarPrefab));
-                Vector2 newPosition = BuffOrDebuffBars[BuffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition + new Vector2(200, 0);
-                BuffOrDebuffBars[BuffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = newPosition;
+                _buffOrDebuffBars.Add(Instantiate(_buffBarPrefab));
+                Vector2 newPosition = _buffOrDebuffBars[_buffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition + new Vector2(200, 0);
+                _buffOrDebuffBars[_buffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = newPosition;
 
             }
             else
             {
-                BuffOrDebuffBars.Add(Instantiate(_debuffBarPrefab));
-                Vector2 newPosition = BuffOrDebuffBars[BuffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition + new Vector2(200, 0);
-                BuffOrDebuffBars[BuffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = newPosition;
+                _buffOrDebuffBars.Add(Instantiate(_debuffBarPrefab));
+                Vector2 newPosition = _buffOrDebuffBars[_buffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition + new Vector2(200, 0);
+                _buffOrDebuffBars[_buffOrDebuffBars.Count - 1].GetComponent<RectTransform>().anchoredPosition = newPosition;
             }
         }
-        barIndex = BuffOrDebuffBars.Count - 1;
+        barIndex = _buffOrDebuffBars.Count - 1;
         return barIndex;
+    }
+
+    public void LobbyUiSetActive(bool value)
+    {
+        foreach (var uiElement in _lobbyUI)
+        {
+            uiElement.SetActive(value);
+        }
     }
 }

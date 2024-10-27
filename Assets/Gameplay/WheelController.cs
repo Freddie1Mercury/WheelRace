@@ -6,11 +6,13 @@ public class WheelController : MonoBehaviour
     private int _dashForwardForce;
     private float _cooldownDashForward;
     private float _remainingTimeUntilDashForward;
-    public bool WheelIslive = false;
 
     public float CooldownDashForward { get => _cooldownDashForward; set => _cooldownDashForward = value < 0 ? 0 : value; }
     public int DashForwardForce { get => _dashForwardForce; set => _dashForwardForce = value < 0 ? 0 : value; }
     public int StartForce { get => _startForce; set => _startForce = value < 0 ? 0 : value; }
+
+    public bool WheelIslive = false;
+
     public Rigidbody RigidbodyWheel;
 
     [SerializeField] private int _startForce;
