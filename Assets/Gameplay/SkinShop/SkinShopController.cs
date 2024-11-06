@@ -1,15 +1,20 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkinShopController : MonoBehaviour
 {
     public List<GameObject> SkinShopCells;
 
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _skinStoreViewObject;
 
     [SerializeField] private MoneyManager _moneyManager;
+
+    [SerializeField] private Transform _buyButtonPosition;
+
+    [SerializeField] private Button _buySkinButton;
+    [SerializeField] private Transform _camera;
 
     private SkinShopCell _skinShopCell;
 
@@ -26,10 +31,15 @@ public class SkinShopController : MonoBehaviour
         _playerRenderer = _player.GetComponent<MeshRenderer>();
         _playerMeshColider = _player.GetComponent<MeshCollider>();
     }
-    private void BuySkin(int cellIndex)
+
+    public void BuySkin(int cellIndex)
     {
         _skinShopCell = SkinShopCells[cellIndex].GetComponent<SkinShopCell>();
 
+        if (_skinShopCell.IsPurchasing)
+        {
+            return;
+        }
         if (_moneyManager.AllMoney < _skinShopCell.CharacterSkin.SkinPrice)
         {
             return;
@@ -37,22 +47,11 @@ public class SkinShopController : MonoBehaviour
 
         _moneyManager.DeductMoney(_skinShopCell.CharacterSkin.SkinPrice);
         _skinShopCell.UnlockCell();
-
     }
 
     public void SelectSkin(int cellIndex)
     {
         _skinShopCell = SkinShopCells[cellIndex].GetComponent<SkinShopCell>();
-
-        if (!_skinShopCell.IsPurchasing)
-        {
-            BuySkin(cellIndex);
-            return;
-        }
-        if (!_skinShopCell.IsPurchasing)
-        {
-            return;
-        }
 
         for (int i = 0; i < SkinShopCells.Count; i++)
         {
@@ -62,28 +61,39 @@ public class SkinShopController : MonoBehaviour
             }
         }
 
-        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh);
+        _buySkinButton.onClick.RemoveAllListeners();
+        _buySkinButton.onClick.AddListener(() => BuySkin(cellIndex));
+        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(), 
+           _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject);
+
+        if (!_skinShopCell.IsPurchasing)
+        {
+            return;
+        }
+
+        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _playerMeshFilter, _playerMeshColider, _playerRenderer, _player);
         _skinShopCell.HideORShowSkinSelectionIndicator(true);
 
     }
 
 
-    private void ReplaceMeshAndScale(Mesh mesh)
+    private void ReplaceMeshAndScale(Mesh mesh, MeshFilter meshFilter, MeshCollider meshCollider, MeshRenderer meshRenderer, GameObject scaleObject)
     {
-        float currentGlobalSize = GetMaxSize(_playerRenderer.bounds.size);
+        float currentGlobalSize = GetMaxSize(meshRenderer.bounds.size);
 
-        _playerMeshFilter.mesh = _skinShopCell.CharacterSkin.SkinMesh;
-        _playerMeshColider.sharedMesh = _skinShopCell.CharacterSkin.SkinMesh;
-        _playerRenderer.material = _skinShopCell.CharacterSkin.SkinMaterial;
+        meshFilter.mesh = _skinShopCell.CharacterSkin.SkinMesh;
+        meshCollider.sharedMesh = _skinShopCell.CharacterSkin.SkinMesh;
+        meshRenderer.material = _skinShopCell.CharacterSkin.SkinMaterial;
 
-        float newGlobalSize = GetMaxSize(_playerRenderer.bounds.size);
+        float newGlobalSize = GetMaxSize(meshRenderer.bounds.size);
 
         if (newGlobalSize > 0)
         {
             float scaleFactor = currentGlobalSize / newGlobalSize;
-            _player.transform.localScale *= scaleFactor;
+            scaleObject.transform.localScale *= scaleFactor;
         }
-            
+
+
     }
 
     private float GetMaxSize(Vector3 size)

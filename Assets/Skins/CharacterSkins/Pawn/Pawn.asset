@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fca1e80e4f55844b4447867c964c06, type: 3}
   m_Name: Pawn
   m_EditorClassIdentifier: 
-  _skinMesh: {fileID: -6552987172365011253, guid: feaebd3630ab0194a86c09f2c3ae85f4, type: 3}
-  _skinMaterial: {fileID: 2100000, guid: af53de69df7deaa4789aca41dae08b74, type: 2}
+  _skinMesh: {fileID: 1705324974331375986, guid: 55372ceb0ff1f984e99c101beb1cbe7a, type: 3}
+  _skinMaterial: {fileID: 6572841596611021152, guid: 55372ceb0ff1f984e99c101beb1cbe7a, type: 3}
   _skinCellSprite: {fileID: 21300000, guid: e35bf1a1734d22a4b8d623825ff5987b, type: 3}
   _skinPrice: 5000

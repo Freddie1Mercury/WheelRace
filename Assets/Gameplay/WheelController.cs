@@ -73,13 +73,13 @@ public class WheelController : MonoBehaviour
 
     public void DashLeft()
     {
-        RigidbodyWheel.AddForce(new Vector3(0, 0, -10), ForceMode.Impulse);
+        RigidbodyWheel.AddForce(new Vector3(0, 0, -15), ForceMode.Impulse);
         _audioManager.PlaySound(audioClip: _soundClips.WhooshingSound);
     }
 
     public void DashRight()
     {
-        RigidbodyWheel.AddForce(new Vector3(0, 0, 10), ForceMode.Impulse);
+        RigidbodyWheel.AddForce(new Vector3(0, 0, 15), ForceMode.Impulse);
         _audioManager.PlaySound(audioClip: _soundClips.WhooshingSound);
     }
 

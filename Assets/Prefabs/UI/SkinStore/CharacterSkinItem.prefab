@@ -649,9 +649,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ed70b84f587904e9ecc11b37e762f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterSkin: {fileID: 0}
-  _priceText: {fileID: 0}
   IsPurchasing: 0
+  CharacterSkin: {fileID: 0}
+  BuySkinButton: {fileID: 0}
+  _priceText: {fileID: 0}
 --- !u!114 &2154835809652490892
 MonoBehaviour:
   m_ObjectHideFlags: 0

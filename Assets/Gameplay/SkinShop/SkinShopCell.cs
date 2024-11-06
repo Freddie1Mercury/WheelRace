@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class SkinShopCell : MonoBehaviour
 {
+    public bool IsPurchasing;
+
     public CharacterSkin CharacterSkin;
 
     [SerializeField] private TextMeshProUGUI _priceText;
@@ -14,7 +16,6 @@ public class SkinShopCell : MonoBehaviour
 
     private SkinShopController _skinShopController;
 
-    public bool IsPurchasing;
 
 
     private void Awake()
