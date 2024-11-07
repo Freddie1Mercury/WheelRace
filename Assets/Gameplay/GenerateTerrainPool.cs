@@ -10,11 +10,11 @@ public class GenerateTerrainPool : MonoBehaviour
 
     private Vector3 _terrainStartPosition;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_terrainsPool.Count > 0)
         {
-
+            RandomiseTerrain();
             GetTerrainPool();
             ReleasePool();
         }
@@ -33,11 +33,11 @@ public class GenerateTerrainPool : MonoBehaviour
 
         foreach (var item in _terrainsPrefab)
         {
-                _terrainsPool.Add(Instantiate(item, temp, terrainStartRotation));
-                temp = new Vector3(temp.x - 200, temp.y, temp.z);
-                item.SetActive(true);
+            _terrainsPool.Add(Instantiate(item, temp, terrainStartRotation));
+            temp = new Vector3(temp.x - 200, temp.y, temp.z);
+            item.SetActive(true);
         }
-            
+
 
 
     }
@@ -90,5 +90,16 @@ public class GenerateTerrainPool : MonoBehaviour
         }
         _terrainsPool.Clear();
         _terrainStartSpawnPosition.position = _terrainStartPosition;
+    }
+
+    private void RandomiseTerrain()
+    {
+        for (int i = 0; i < _terrainsPool.Count; i++)
+        {
+            int randomIndex = Random.Range(0, _terrainsPool.Count);
+            GameObject temp = _terrainsPool[i];
+            _terrainsPool[i] = _terrainsPool[randomIndex];
+            _terrainsPool[randomIndex] = temp;
+        }
     }
 }
