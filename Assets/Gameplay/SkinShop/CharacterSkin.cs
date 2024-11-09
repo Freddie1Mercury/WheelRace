@@ -8,6 +8,9 @@ public class CharacterSkin : ScriptableObject
     public Material SkinMaterial => _skinMaterial;
     public Sprite SkinCellSprite => _skinCellSprite;
     public int SkinPrice => _skinPrice;
+    public int SkinPriceInAD => _skinPriceInAD;
+
+    public bool IsPriceInAD;
 
     [SerializeField] private Mesh _skinMesh;
 
@@ -16,5 +19,6 @@ public class CharacterSkin : ScriptableObject
     [SerializeField] private Sprite _skinCellSprite;
 
     [SerializeField] private int _skinPrice;
+    [SerializeField] private int _skinPriceInAD;
 
 }

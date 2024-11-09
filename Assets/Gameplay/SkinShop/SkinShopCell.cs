@@ -4,17 +4,26 @@ using UnityEngine.UI;
 
 public class SkinShopCell : MonoBehaviour
 {
-    public bool IsPurchasing;
+    public bool IsPurchased;
+
+    public int CountViewAds;
 
     public CharacterSkin CharacterSkin;
 
+    public TextMeshProUGUI CountViewAdsText;
+
     [SerializeField] private TextMeshProUGUI _priceText;
+    [SerializeField] private TextMeshProUGUI _priceInADText;
+
+    [SerializeField] private GameObject _price;
+    [SerializeField] private GameObject _priceInAD;
 
     private Button _cellButton;
 
     private int _cellIndex;
 
     private SkinShopController _skinShopController;
+
 
 
 
@@ -33,8 +42,17 @@ public class SkinShopCell : MonoBehaviour
 
         temp = transform.Find("Price/PriceText");
         Debug.Log("temp" + temp.name);
-        _priceText = temp.GetComponent<TextMeshProUGUI>();
         _priceText.text = CharacterSkin.SkinPrice.ToString();
+
+        if (!CharacterSkin.IsPriceInAD)
+        {
+            _price.gameObject.SetActive(true);
+        }
+        else
+        {
+            _priceInAD.gameObject.SetActive(true);
+            _priceInADText.text = CharacterSkin.SkinPriceInAD.ToString();
+        }
 
         _cellButton.onClick.AddListener(() => _skinShopController.SelectSkin(_cellIndex));
     }
@@ -45,10 +63,16 @@ public class SkinShopCell : MonoBehaviour
         GameObject lockImage = temp.gameObject;
         lockImage.SetActive(false);
 
-        temp = transform.Find("Price");
-        GameObject price = temp.gameObject;
-        price.SetActive(false);
-        IsPurchasing = true;
+        if (!CharacterSkin.IsPriceInAD)
+        {
+        _price.SetActive(false);
+        IsPurchased = true;
+        }
+        else
+        {
+            _priceInAD.SetActive(false);
+            IsPurchased = true;
+        }
     }
 
     public void HideORShowSkinSelectionIndicator(bool show)
@@ -58,5 +82,5 @@ public class SkinShopCell : MonoBehaviour
         selectedImage.SetActive(show);
     }
 
-   
+
 }

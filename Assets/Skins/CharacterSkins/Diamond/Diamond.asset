@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fca1e80e4f55844b4447867c964c06, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
+  IsPriceInAD: 1
   _skinMesh: {fileID: 2401994324257950250, guid: 8c40ee3168600ff41b322a77d6a89d98, type: 3}
   _skinMaterial: {fileID: 5519574128772811908, guid: 8c40ee3168600ff41b322a77d6a89d98, type: 3}
   _skinCellSprite: {fileID: 21300000, guid: 5aa3bacaa2a51fb47aa891722eaafc55, type: 3}
   _skinPrice: 15000
+  _skinPriceInAD: 3

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class SkinShopController : MonoBehaviour
 {
@@ -35,8 +36,8 @@ public class SkinShopController : MonoBehaviour
     public void BuySkin(int cellIndex)
     {
         _skinShopCell = SkinShopCells[cellIndex].GetComponent<SkinShopCell>();
-
-        if (_skinShopCell.IsPurchasing)
+        Debug.Log("BuySkin");
+        if (_skinShopCell.IsPurchased)
         {
             return;
         }
@@ -45,8 +46,27 @@ public class SkinShopController : MonoBehaviour
             return;
         }
 
+        if (!_skinShopCell.CharacterSkin.IsPriceInAD)
+        {
         _moneyManager.DeductMoney(_skinShopCell.CharacterSkin.SkinPrice);
         _skinShopCell.UnlockCell();
+        }
+        else
+        {
+            if (_skinShopCell.CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
+            {
+                return;
+            }
+                YandexGame.RewVideoShow(1);
+            _skinShopCell.CountViewAds +=1;
+            _skinShopCell.CountViewAdsText.text = _skinShopCell.CountViewAds.ToString();
+            if (_skinShopCell.CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
+            {
+                _skinShopCell.UnlockCell();
+                _skinShopCell.IsPurchased = true;
+                return;
+            }
+        }
     }
 
     public void SelectSkin(int cellIndex)
@@ -66,7 +86,7 @@ public class SkinShopController : MonoBehaviour
         ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(), 
            _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject);
 
-        if (!_skinShopCell.IsPurchasing)
+        if (!_skinShopCell.IsPurchased)
         {
             return;
         }
