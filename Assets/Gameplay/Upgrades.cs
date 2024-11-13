@@ -1,12 +1,9 @@
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class Upgrades : MonoBehaviour
 {
-    private int _dashForwardLevel = 0;
-    private int _cooldownDashForwadrlevel = 0;
-    private int _incomeLevel = 0;
-    private int _startForceLevel = 0;
 
     private int _dashForwardMaxLevel = 10;
     private int _incomeMaxLevel = 10;
@@ -26,6 +23,10 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private GameObject _cooldownDashForwardMaxLevelWarningText;
     [SerializeField] private GameObject _incomeMaxLevelWarningText;
     [SerializeField] private GameObject _startForceMaxLevelWarningText;
+    public int _dashForwardLevel { get => YandexGame.savesData.DashForwardLevel; set => YandexGame.savesData.DashForwardLevel = value; }
+    public int _cooldownDashForwadrlevel { get => YandexGame.savesData.CooldownDashForwadrlevel; set => YandexGame.savesData.CooldownDashForwadrlevel = value; }
+    public int _incomeLevel { get => YandexGame.savesData.IncomeLevel; set => YandexGame.savesData.IncomeLevel = value; }
+    public int _startForceLevel { get => YandexGame.savesData.StartForceLevel; set => YandexGame.savesData.StartForceLevel = value; }
     public int DashForwardLevel => _dashForwardLevel;
 
     public void UpgradeDashForward()
@@ -128,6 +129,11 @@ public class Upgrades : MonoBehaviour
             _startForceMaxLevelWarningText.SetActive(true);
             return;
         }
+
+    }
+
+    private void UpdateUI()
+    {
 
     }
 

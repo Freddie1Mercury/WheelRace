@@ -4496,7 +4496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f235188d6d5cb1f41abbd1559fce9b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkinShopCells: []
   _player: {fileID: 1784429364}
   _skinStoreViewObject: {fileID: 231231869}
   _moneyManager: {fileID: 359234239}
@@ -11564,8 +11563,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1d0ae6d9611338648abcb324ce439587, type: 2}
+  m_sharedMaterial: {fileID: -2172001149555747783, guid: 1d0ae6d9611338648abcb324ce439587, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -12337,7 +12336,7 @@ PrefabInstance:
       objectReference: {fileID: 1794192242122898874}
     - target: {fileID: 6685234503777366345, guid: d351abd97a986ed459a13050322aec5d, type: 3}
       propertyPath: m_Priority
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6685234503777366346, guid: d351abd97a986ed459a13050322aec5d, type: 3}
       propertyPath: m_Name

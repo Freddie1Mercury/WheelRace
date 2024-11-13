@@ -37,7 +37,7 @@ public class SkinShopCell : MonoBehaviour
 
         _skinShopController = GameObject.Find("SkinShopController").GetComponent<SkinShopController>();
 
-        _skinShopController.SkinShopCells.Add(transform.gameObject);
+        _skinShopController.SkinShopCells.Add(transform.GetComponent<SkinShopCell>());
         _cellIndex = _skinShopController.SkinShopCells.Count - 1;
 
         temp = transform.Find("Price/PriceText");

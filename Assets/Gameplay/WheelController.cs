@@ -1,21 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class WheelController : MonoBehaviour
 {
-    private int _dashForwardForce;
-    private float _cooldownDashForward;
-    private float _remainingTimeUntilDashForward;
+    public float CooldownDashForward { get => YandexGame.savesData.CooldownDashForward; set => YandexGame.savesData.CooldownDashForward = value < 0 ? 0 : value; }
+    public int DashForwardForce { get => YandexGame.savesData.DashForwardForce; set => YandexGame.savesData.DashForwardForce = value < 0 ? 0 : value; }
+    public int StartForce { get => YandexGame.savesData.StartForce; set => YandexGame.savesData.StartForce = value < 0 ? 0 : value; }
 
-    public float CooldownDashForward { get => _cooldownDashForward; set => _cooldownDashForward = value < 0 ? 0 : value; }
-    public int DashForwardForce { get => _dashForwardForce; set => _dashForwardForce = value < 0 ? 0 : value; }
-    public int StartForce { get => _startForce; set => _startForce = value < 0 ? 0 : value; }
-
-    public bool WheelIslive = false;
+    public bool WheelIslive = true;
 
     public Rigidbody RigidbodyWheel;
 
-    [SerializeField] private int _startForce;
+
     [SerializeField] private GameObject _dashForwardButton;
     [SerializeField] private Image _dashForwardImage;
 
@@ -26,23 +23,25 @@ public class WheelController : MonoBehaviour
     [SerializeField] private GenerateTerrainPool _terrainPool;
     [SerializeField] private UIManager _uiManager;
 
+    private float _remainingTimeUntilDashForward;
+
     private void Start()
     {
-        _cooldownDashForward = 15;
-        _remainingTimeUntilDashForward = _cooldownDashForward;
+        CooldownDashForward = 15;
+        _remainingTimeUntilDashForward = CooldownDashForward;
         StartCoroutine(_endGame.CheckDeath());
-        _startForce = 30;
+        StartForce = 30;
     }
 
     private void Update()
     {
         if (_dashForwardImage.fillAmount == 1)
         {
-            _remainingTimeUntilDashForward = _cooldownDashForward;
+            _remainingTimeUntilDashForward = CooldownDashForward;
         }
-        if (_remainingTimeUntilDashForward <= _cooldownDashForward)
+        if (_remainingTimeUntilDashForward <= CooldownDashForward)
         {
-            _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / _cooldownDashForward;
+            _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / CooldownDashForward;
             _remainingTimeUntilDashForward += Time.deltaTime;
         }
         else if (_dashForwardImage.fillAmount >= 0.9)
@@ -67,7 +66,7 @@ public class WheelController : MonoBehaviour
         _terrainPool.InitTerrains();
         WheelIslive = true;
         RigidbodyWheel.isKinematic = false;
-        RigidbodyWheel.AddForce(new Vector3(-_startForce, 0, 0), ForceMode.Impulse);
+        RigidbodyWheel.AddForce(new Vector3(-StartForce, 0, 0), ForceMode.Impulse);
 
     }
 
@@ -88,8 +87,8 @@ public class WheelController : MonoBehaviour
         if (_dashForwardImage.fillAmount == 1)
         {
             _remainingTimeUntilDashForward = 0;
-            _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / _cooldownDashForward;
-            RigidbodyWheel.AddForce(new Vector3(-_dashForwardForce, 0, 0), ForceMode.Impulse);
+            _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / CooldownDashForward;
+            RigidbodyWheel.AddForce(new Vector3(-DashForwardForce, 0, 0), ForceMode.Impulse);
         }
     }
 }

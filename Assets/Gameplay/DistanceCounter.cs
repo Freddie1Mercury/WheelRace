@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class DistanceCounter : MonoBehaviour
+public  class DistanceCounter : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text _distanceConterText;

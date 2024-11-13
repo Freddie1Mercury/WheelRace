@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace YG
 {
     [System.Serializable]
@@ -18,7 +20,28 @@ namespace YG
 
         // Ваши сохранения
 
-        // ...
+        //MoneyManager Data
+        public int UpgradeIncomePrice = 100;
+        public int UpgradeDashForwardPrice = 100;
+        public int UpgradeCooldownDashForwardPrice = 100;
+        public int UpgradeStartForcePrice = 100;
+        public float MoneyMultipier = 1;
+        public float AllMoney = 40000;
+
+        //SkinShopController Data
+        public List<SkinShopCell> SkinShopCells = new List<SkinShopCell>(1);
+
+        //Upgrades Data
+        public int DashForwardLevel = 0;
+        public int CooldownDashForwadrlevel = 0;
+        public int IncomeLevel = 0;
+        public int StartForceLevel = 0;
+
+        //WheelController Data
+        public int DashForwardForce = 0;
+        public float CooldownDashForward = 0;
+        public float RemainingTimeUntilDashForward = 0;
+        public int StartForce = 0;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

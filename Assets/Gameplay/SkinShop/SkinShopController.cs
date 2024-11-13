@@ -5,7 +5,7 @@ using YG;
 
 public class SkinShopController : MonoBehaviour
 {
-    public List<GameObject> SkinShopCells;
+    public List<SkinShopCell> SkinShopCells => YandexGame.savesData.SkinShopCells;
 
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _skinStoreViewObject;
@@ -28,6 +28,7 @@ public class SkinShopController : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(YandexGame.savesData.SkinShopCells);
         _playerMeshFilter = _player.GetComponent<MeshFilter>();
         _playerRenderer = _player.GetComponent<MeshRenderer>();
         _playerMeshColider = _player.GetComponent<MeshCollider>();
