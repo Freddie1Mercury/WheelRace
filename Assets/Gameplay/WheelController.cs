@@ -57,6 +57,10 @@ public class WheelController : MonoBehaviour
         {
             DashRight();
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DashForward();
+        }
     }
 
     public void AddStartForce()
@@ -84,11 +88,15 @@ public class WheelController : MonoBehaviour
 
     public void DashForward()
     {
-        if (_dashForwardImage.fillAmount == 1)
+        if (_upgrades.DashForwardLevel > 0)
         {
-            _remainingTimeUntilDashForward = 0;
-            _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / CooldownDashForward;
-            RigidbodyWheel.AddForce(new Vector3(-DashForwardForce, 0, 0), ForceMode.Impulse);
+            if (_dashForwardImage.fillAmount == 1)
+            {
+                _remainingTimeUntilDashForward = 0;
+                _dashForwardImage.fillAmount = _remainingTimeUntilDashForward / CooldownDashForward;
+                RigidbodyWheel.AddForce(new Vector3(-DashForwardForce, 0, 0), ForceMode.Impulse);
+                _audioManager.PlaySound(audioClip: _soundClips.WhooshingSound);
+            }
         }
     }
 }

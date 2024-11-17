@@ -8,11 +8,14 @@ public class AirResistanceDebuff : Debuff
 
     private void OnTriggerEnter(Collider other)
     {
-        OffObstacle();
-        other.GetComponent<Rigidbody>().drag += dragAddition;
-        StartCoroutine(WaitEndDebuf(other.GetComponent<Rigidbody>()));
-        _debuffBarIndex = _buffAndDebuffBarsPool.GetPool(false);
-        _remainingTimeUntilEndDebuff = _debuffTime;
+        if (other.gameObject.GetComponent<WheelController>() != null)
+        {
+            OffObstacle();
+            other.GetComponent<Rigidbody>().drag += dragAddition;
+            StartCoroutine(WaitEndDebuf(other.GetComponent<Rigidbody>()));
+            _debuffBarIndex = _buffAndDebuffBarsPool.GetPool(false);
+            _remainingTimeUntilEndDebuff = _debuffTime;
+        }
     }
 
     private void Update()

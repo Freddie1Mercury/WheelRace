@@ -23,15 +23,19 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private GameObject _cooldownDashForwardMaxLevelWarningText;
     [SerializeField] private GameObject _incomeMaxLevelWarningText;
     [SerializeField] private GameObject _startForceMaxLevelWarningText;
-    public int _dashForwardLevel { get => YandexGame.savesData.DashForwardLevel; set => YandexGame.savesData.DashForwardLevel = value; }
-    public int _cooldownDashForwadrlevel { get => YandexGame.savesData.CooldownDashForwadrlevel; set => YandexGame.savesData.CooldownDashForwadrlevel = value; }
-    public int _incomeLevel { get => YandexGame.savesData.IncomeLevel; set => YandexGame.savesData.IncomeLevel = value; }
-    public int _startForceLevel { get => YandexGame.savesData.StartForceLevel; set => YandexGame.savesData.StartForceLevel = value; }
-    public int DashForwardLevel => _dashForwardLevel;
+    public int DashForwardLevel { get => YandexGame.savesData.DashForwardLevel; set => YandexGame.savesData.DashForwardLevel = value; }
+    public int CooldownDashForwadrlevel { get => YandexGame.savesData.CooldownDashForwadrlevel; set => YandexGame.savesData.CooldownDashForwadrlevel = value; }
+    public int IncomeLevel { get => YandexGame.savesData.IncomeLevel; set => YandexGame.savesData.IncomeLevel = value; }
+    public int StartForceLevel { get => YandexGame.savesData.StartForceLevel; set => YandexGame.savesData.StartForceLevel = value; }
+
+    private void Start()
+    {
+        UpdateUI();
+    }
 
     public void UpgradeDashForward()
     {
-        if (_dashForwardLevel == _dashForwardMaxLevel)
+        if (DashForwardLevel == _dashForwardMaxLevel)
         {
             return;
         }
@@ -44,11 +48,11 @@ public class Upgrades : MonoBehaviour
         float multiplier = 1.3f;
         _moneyManager.UpgradeDashForwardPrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeDashForwardPrice, multiplier);
         _moneyManager.UpdateUi();
-        _dashForwardLevel++;
-        _dashForwardLevelText.text = _dashForwardLevel.ToString();
-        _wheelController.DashForwardForce = _dashForwardLevel * 10;
+        DashForwardLevel++;
+        _dashForwardLevelText.text = DashForwardLevel.ToString();
+        _wheelController.DashForwardForce = DashForwardLevel * 10;
 
-        if (_dashForwardLevel == _dashForwardMaxLevel)
+        if (DashForwardLevel == _dashForwardMaxLevel)
         {
             _dashForwardMaxLevelWarningText.SetActive(true);
             return;
@@ -57,7 +61,7 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeCooldownDashForward()
     {
-        if (_cooldownDashForwadrlevel == _cooldownDashForwardMaxLevel)
+        if (CooldownDashForwadrlevel == _cooldownDashForwardMaxLevel)
         {
             return;
         }
@@ -70,11 +74,11 @@ public class Upgrades : MonoBehaviour
         float multiplier = 1.3f;
         _moneyManager.UpgradeCooldownDashForwardPrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeCooldownDashForwardPrice, multiplier);
         _moneyManager.UpdateUi();
-        _cooldownDashForwadrlevel++;
+        CooldownDashForwadrlevel++;
         _wheelController.CooldownDashForward -= 1;
-        _cooldownDashForwardLevelText.text = _cooldownDashForwadrlevel.ToString();
+        _cooldownDashForwardLevelText.text = CooldownDashForwadrlevel.ToString();
 
-        if (_cooldownDashForwadrlevel == _cooldownDashForwardMaxLevel)
+        if (CooldownDashForwadrlevel == _cooldownDashForwardMaxLevel)
         {
             _cooldownDashForwardMaxLevelWarningText.SetActive(true);
             return;
@@ -83,7 +87,7 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeIncome()
     {
-        if (_incomeLevel == _incomeMaxLevel)
+        if (IncomeLevel == _incomeMaxLevel)
         {
             return;
         }
@@ -91,15 +95,15 @@ public class Upgrades : MonoBehaviour
         {
             return;
         }
-        _incomeLevel += 1;
-        _incomeLevelText.text = _incomeLevel.ToString();
+        IncomeLevel += 1;
+        _incomeLevelText.text = IncomeLevel.ToString();
         _moneyManager.DeductMoney(_moneyManager.UpgradeIncomePrice);
         float multiplier = 1.5f;
         _moneyManager.UpgradeIncomePrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeIncomePrice, multiplier);
         _moneyManager.MoneyMultipier += 1;
         _moneyManager.UpdateUi();
 
-        if (_incomeLevel == _incomeMaxLevel)
+        if (IncomeLevel == _incomeMaxLevel)
         {
             _incomeMaxLevelWarningText.SetActive(true);
         }
@@ -107,7 +111,7 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeStartForce()
     {
-        if (_startForceLevel == _startForceMaxLevel)
+        if (StartForceLevel == _startForceMaxLevel)
         {
             return;
         }
@@ -116,15 +120,15 @@ public class Upgrades : MonoBehaviour
             return;
         }
 
-        _startForceLevel += 1;
-        _startForceLevelText.text = _startForceLevel.ToString();
+        StartForceLevel += 1;
+        _startForceLevelText.text = StartForceLevel.ToString();
         _moneyManager.DeductMoney(_moneyManager.UpgradeStartForcePrice);
         float multiplier = 1.5f;
         _moneyManager.UpgradeStartForcePrice = _moneyManager.MultiplyPrice(_moneyManager.UpgradeStartForcePrice, multiplier);
         _wheelController.StartForce += 10;
         _moneyManager.UpdateUi();
 
-        if (_startForceLevel == _startForceMaxLevel)
+        if (StartForceLevel == _startForceMaxLevel)
         {
             _startForceMaxLevelWarningText.SetActive(true);
             return;
@@ -134,7 +138,10 @@ public class Upgrades : MonoBehaviour
 
     private void UpdateUI()
     {
-
+        _cooldownDashForwardLevelText.text = CooldownDashForwadrlevel.ToString();
+        _dashForwardLevelText.text = DashForwardLevel.ToString();
+        _incomeLevelText.text = IncomeLevel.ToString();
+        _startForceLevelText.text = StartForceLevel.ToString();
     }
 
 

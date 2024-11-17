@@ -142,7 +142,7 @@ public class Obstacle : MonoBehaviour
 
         wheelRigidbody.useGravity = true;
         wheelRigidbody.drag = 0.2f;
-        _mainCamera.Priority += 1;
+        _mainCamera.Priority += 10;
 
 
     }

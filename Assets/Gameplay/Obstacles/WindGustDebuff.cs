@@ -16,19 +16,22 @@ public class WindGustDebuff : Debuff
 
     private void OnTriggerEnter(Collider other)
     {
-        OffObstacle();
-        if (other.GetComponent<Rigidbody>() != null)
+        if (other.gameObject.GetComponent<WheelController>() != null)
         {
-            _debuffTime = 7;
-            _remainingTimeUntilEndDebuff = _debuffTime;
-            _debuffIsActive = true;
-            _wheelRigidbody = other.GetComponent<Rigidbody>();
-        }
+            OffObstacle();
+            if (other.GetComponent<Rigidbody>() != null)
+            {
+                _debuffTime = 7;
+                _remainingTimeUntilEndDebuff = _debuffTime;
+                _debuffIsActive = true;
+                _wheelRigidbody = other.GetComponent<Rigidbody>();
+            }
 
-        _isForceRight = _random.Next(0, 2) == 1;
-        StartCoroutine(WaitEndDebuff());
-        _debuffBarIndex = _buffAndDebuffBarsPool.GetPool(false);
-        _remainingTimeUntilEndDebuff = _debuffTime;
+            _isForceRight = _random.Next(0, 2) == 1;
+            StartCoroutine(WaitEndDebuff());
+            _debuffBarIndex = _buffAndDebuffBarsPool.GetPool(false);
+            _remainingTimeUntilEndDebuff = _debuffTime;
+        }
     }
     private void Start()
     {

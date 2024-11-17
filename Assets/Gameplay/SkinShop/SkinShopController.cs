@@ -51,6 +51,7 @@ public class SkinShopController : MonoBehaviour
         {
         _moneyManager.DeductMoney(_skinShopCell.CharacterSkin.SkinPrice);
         _skinShopCell.UnlockCell();
+            SelectSkin(cellIndex);
         }
         else
         {
@@ -65,6 +66,7 @@ public class SkinShopController : MonoBehaviour
             {
                 _skinShopCell.UnlockCell();
                 _skinShopCell.IsPurchased = true;
+                SelectSkin(cellIndex);
                 return;
             }
         }
@@ -100,6 +102,7 @@ public class SkinShopController : MonoBehaviour
 
     private void ReplaceMeshAndScale(Mesh mesh, MeshFilter meshFilter, MeshCollider meshCollider, MeshRenderer meshRenderer, GameObject scaleObject)
     {
+      
         float currentGlobalSize = GetMaxSize(meshRenderer.bounds.size);
 
         meshFilter.mesh = _skinShopCell.CharacterSkin.SkinMesh;

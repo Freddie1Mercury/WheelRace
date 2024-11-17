@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private List<AudioClip> _backGroundMusic = new List<AudioClip>();
-    [SerializeField] private List<GameObject> _soundPlayers = new List<GameObject>(1);
+    [SerializeField] private  List<GameObject> _soundPlayers = new List<GameObject>(1);
     [SerializeField] private GameObject _soundPlayerPrefab;
     [SerializeField] private Transform _soundsPlayersPosition;
     [SerializeField] private AudioSource _audioSource;
@@ -82,6 +82,24 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+    public  void OffAllSoundsAndMusic()
+    {
+        _audioSource.Pause();
 
+        foreach (var soundPlayer in _soundPlayers)
+        {
+            soundPlayer.GetComponent<AudioSource>().Pause();
+        }
+    }
+
+    public void OnAllSoundsAndMusic()
+    {
+        _audioSource.UnPause();
+
+        foreach (var soundPlayer in _soundPlayers)
+        {
+            soundPlayer.GetComponent<AudioSource>().UnPause();
+        }
+    }
 
 }

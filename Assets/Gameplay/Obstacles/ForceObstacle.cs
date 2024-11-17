@@ -10,12 +10,15 @@ public class ForceObstacle : Buff
 
     private void OnTriggerEnter(Collider other)
     {
-        transform.GetComponent<Renderer>().enabled = false;
-        if (applyForceOnX)
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(-_forceOnX, 0, 0), ForceMode.Impulse);
-        if (applyForceOnY)
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(0, _forceOnY, 0), ForceMode.Impulse);
-        StartCoroutine(ResetBuff());
+        if (other.gameObject.GetComponent<WheelController>() != null)
+        {
+            transform.GetComponent<Renderer>().enabled = false;
+            if (applyForceOnX)
+                other.GetComponent<Rigidbody>().AddForce(new Vector3(-_forceOnX, 0, 0), ForceMode.Impulse);
+            if (applyForceOnY)
+                other.GetComponent<Rigidbody>().AddForce(new Vector3(0, _forceOnY, 0), ForceMode.Impulse);
+            StartCoroutine(ResetBuff());
+        }
     }
 
     private void Start()

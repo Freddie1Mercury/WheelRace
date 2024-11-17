@@ -6,16 +6,17 @@ public class AntiGravity : Buff
 {
     private void OnTriggerEnter(Collider other)
     {
-        OffObstacle();
-        if (other.gameObject.GetComponent<Rigidbody>() != null)
+        if (other.gameObject.GetComponent<WheelController>() != null)
         {
-            other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            OffObstacle();
+            if (other.gameObject.GetComponent<Rigidbody>() != null)
+            {
+                other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            }
+            StartCoroutine(WaitEndBaff(other.GetComponent<Rigidbody>()));
+            _buffBarIndex = _buffAndDebuffBarsPool.GetPool(true);
+            _remainingTimeUntilEndBuff = _buffTime;
         }
-        StartCoroutine(WaitEndBaff(other.GetComponent<Rigidbody>()));
-        _buffBarIndex = _buffAndDebuffBarsPool.GetPool(true);
-        _remainingTimeUntilEndBuff = _buffTime;
-
-
     }
 
     private void Start()

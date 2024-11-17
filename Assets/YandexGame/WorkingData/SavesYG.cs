@@ -38,7 +38,7 @@ namespace YG
         public int StartForceLevel = 0;
 
         //WheelController Data
-        public int DashForwardForce = 0;
+        public int DashForwardForce = 10;
         public float CooldownDashForward = 0;
         public float RemainingTimeUntilDashForward = 0;
         public int StartForce = 0;
