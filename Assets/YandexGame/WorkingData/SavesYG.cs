@@ -26,10 +26,12 @@ namespace YG
         public int UpgradeCooldownDashForwardPrice = 100;
         public int UpgradeStartForcePrice = 100;
         public float MoneyMultipier = 1;
-        public float AllMoney = 40000;
+        public float AllMoney = 400;
 
-        //SkinShopController Data
-        public List<SkinShopCell> SkinShopCells = new List<SkinShopCell>(1);
+        //SkinShopCell Data
+        public List<SkinSaveInfo> SkinSaveInfos = new List<SkinSaveInfo>(1);
+        public int CountViewAds = 0;
+
 
         //Upgrades Data
         public int DashForwardLevel = 0;
@@ -39,9 +41,9 @@ namespace YG
 
         //WheelController Data
         public int DashForwardForce = 10;
-        public float CooldownDashForward = 0;
+        public float CooldownDashForward = 15;
         public float RemainingTimeUntilDashForward = 0;
-        public int StartForce = 0;
+        public int StartForce = 30;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

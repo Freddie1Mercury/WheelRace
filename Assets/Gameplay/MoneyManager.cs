@@ -32,6 +32,7 @@ public class MoneyManager : MonoBehaviour
     {
         _moneyFromLastSession = (int)_distanceCounter.OldResult / 10 * YandexGame.savesData.MoneyMultipier;
         YandexGame.savesData.AllMoney += _moneyFromLastSession;
+        YandexGame.SaveProgress();
         UpdateUi();
         _moneyFromLastSession = 0;
     }
@@ -63,6 +64,7 @@ public class MoneyManager : MonoBehaviour
         if (money > 0)
         {
             YandexGame.savesData.AllMoney += money;
+            YandexGame.SaveProgress();
         }
         UpdateUi();
     }
@@ -72,6 +74,7 @@ public class MoneyManager : MonoBehaviour
         if (money < YandexGame.savesData.AllMoney)
         {
             YandexGame.savesData.AllMoney -= money;
+            YandexGame.SaveProgress();
         }
         UpdateUi();
     }

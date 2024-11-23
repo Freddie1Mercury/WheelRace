@@ -5,14 +5,12 @@ using YG;
 
 public class SkinShopController : MonoBehaviour
 {
-    public List<SkinShopCell> SkinShopCells => YandexGame.savesData.SkinShopCells;
+    public List<SkinShopCell> SkinShopCells = new List<SkinShopCell>(1);
 
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _skinStoreViewObject;
 
     [SerializeField] private MoneyManager _moneyManager;
-
-    [SerializeField] private Transform _buyButtonPosition;
 
     [SerializeField] private Button _buySkinButton;
     [SerializeField] private Transform _camera;
@@ -28,27 +26,51 @@ public class SkinShopController : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(YandexGame.savesData.SkinShopCells);
         _playerMeshFilter = _player.GetComponent<MeshFilter>();
         _playerRenderer = _player.GetComponent<MeshRenderer>();
         _playerMeshColider = _player.GetComponent<MeshCollider>();
+       
+    }
+
+    private void Start()
+    {
+        //if (YandexGame.savesData.IsPurchaseds.Count == 0)
+        //{
+        //    for (int i = 0; i < SkinShopCells.Count; i++)
+        //    {
+        //        bool temp = false;
+        //        YandexGame.savesData.IsPurchaseds.Add(temp);
+        //    }
+        //}
+        //if (YandexGame.savesData.IsPurchaseds.Count != SkinShopCells.Count)
+        //{
+
+        //}
+        //Debug.Log(YandexGame.savesData.IsPurchaseds.Count + "IsPurchasedCount");
+        //Debug.Log(SkinShopCells.Count + "SkinShopCells Count");
+        //foreach (var item in YandexGame.savesData.IsPurchaseds)
+        //{
+        //    Debug.Log(item);
+        //}
+       
     }
 
     public void BuySkin(int cellIndex)
     {
         _skinShopCell = SkinShopCells[cellIndex].GetComponent<SkinShopCell>();
         Debug.Log("BuySkin");
-        if (_skinShopCell.IsPurchased)
+        if (_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
         {
             return;
         }
+            Debug.Log(_skinShopCell.CountViewAds + "CountViewAds");
+
+        if (!_skinShopCell.CharacterSkin.IsPriceInAD)
+        {
         if (_moneyManager.AllMoney < _skinShopCell.CharacterSkin.SkinPrice)
         {
             return;
         }
-
-        if (!_skinShopCell.CharacterSkin.IsPriceInAD)
-        {
         _moneyManager.DeductMoney(_skinShopCell.CharacterSkin.SkinPrice);
         _skinShopCell.UnlockCell();
             SelectSkin(cellIndex);
@@ -65,16 +87,20 @@ public class SkinShopController : MonoBehaviour
             if (_skinShopCell.CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
             {
                 _skinShopCell.UnlockCell();
-                _skinShopCell.IsPurchased = true;
+                SkinSaveInfo skinSaveTemp =_skinShopCell.SkinSaveInfos[cellIndex];
+                skinSaveTemp.IsPuchased = true;
+               _skinShopCell.SkinSaveInfos[cellIndex] = skinSaveTemp;
                 SelectSkin(cellIndex);
                 return;
             }
         }
+      
     }
 
     public void SelectSkin(int cellIndex)
     {
         _skinShopCell = SkinShopCells[cellIndex].GetComponent<SkinShopCell>();
+        Debug.Log(_skinShopCell.SkinSaveInfos.Count + "SkinSaveInfos Count");
 
         for (int i = 0; i < SkinShopCells.Count; i++)
         {
@@ -88,8 +114,8 @@ public class SkinShopController : MonoBehaviour
         _buySkinButton.onClick.AddListener(() => BuySkin(cellIndex));
         ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(), 
            _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject);
-
-        if (!_skinShopCell.IsPurchased)
+        Debug.Log(SkinShopCells.Count + "SkinShopCell Count");
+        if (!_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
         {
             return;
         }

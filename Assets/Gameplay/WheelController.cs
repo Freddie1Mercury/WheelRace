@@ -27,10 +27,9 @@ public class WheelController : MonoBehaviour
 
     private void Start()
     {
-        CooldownDashForward = 15;
         _remainingTimeUntilDashForward = CooldownDashForward;
         StartCoroutine(_endGame.CheckDeath());
-        StartForce = 30;
+        YandexGame.SaveProgress();
     }
 
     private void Update()

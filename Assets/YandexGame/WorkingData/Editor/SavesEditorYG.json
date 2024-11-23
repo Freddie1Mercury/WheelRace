@@ -1,0 +1,29 @@
+{
+  "idSave": 864,
+  "isFirstSession": false,
+  "language": "ru",
+  "promptDone": false,
+  "money": 1,
+  "newPlayerName": "Hello!",
+  "openLevels": [
+    false,
+    true,
+    false
+  ],
+  "UpgradeIncomePrice": 337,
+  "UpgradeDashForwardPrice": 100,
+  "UpgradeCooldownDashForwardPrice": 100,
+  "UpgradeStartForcePrice": 100,
+  "MoneyMultipier": 4.0,
+  "AllMoney": 90.0,
+  "SkinSaveInfos": [],
+  "CountViewAds": 0,
+  "DashForwardLevel": 0,
+  "CooldownDashForwadrlevel": 0,
+  "IncomeLevel": 3,
+  "StartForceLevel": 0,
+  "DashForwardForce": 10,
+  "CooldownDashForward": 15.0,
+  "RemainingTimeUntilDashForward": 0.0,
+  "StartForce": 30
+}

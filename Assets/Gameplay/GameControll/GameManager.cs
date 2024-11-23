@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,4 +17,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Awake()
+    {
+        //YandexGame.ResetSaveProgress();
+    }
 }

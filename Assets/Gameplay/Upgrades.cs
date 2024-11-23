@@ -55,8 +55,9 @@ public class Upgrades : MonoBehaviour
         if (DashForwardLevel == _dashForwardMaxLevel)
         {
             _dashForwardMaxLevelWarningText.SetActive(true);
-            return;
+            
         }
+        YandexGame.SaveProgress();
     }
 
     public void UpgradeCooldownDashForward()
@@ -81,8 +82,9 @@ public class Upgrades : MonoBehaviour
         if (CooldownDashForwadrlevel == _cooldownDashForwardMaxLevel)
         {
             _cooldownDashForwardMaxLevelWarningText.SetActive(true);
-            return;
+           
         }
+        YandexGame.SaveProgress();
     }
 
     public void UpgradeIncome()
@@ -107,6 +109,7 @@ public class Upgrades : MonoBehaviour
         {
             _incomeMaxLevelWarningText.SetActive(true);
         }
+        YandexGame.SaveProgress();
     }
 
     public void UpgradeStartForce()
@@ -131,8 +134,9 @@ public class Upgrades : MonoBehaviour
         if (StartForceLevel == _startForceMaxLevel)
         {
             _startForceMaxLevelWarningText.SetActive(true);
-            return;
+            
         }
+        YandexGame.SaveProgress();
 
     }
 
@@ -142,6 +146,26 @@ public class Upgrades : MonoBehaviour
         _dashForwardLevelText.text = DashForwardLevel.ToString();
         _incomeLevelText.text = IncomeLevel.ToString();
         _startForceLevelText.text = StartForceLevel.ToString();
+
+        if (DashForwardLevel == _dashForwardMaxLevel)
+        {
+            _dashForwardMaxLevelWarningText.SetActive(true);
+            
+        }
+        if (CooldownDashForwadrlevel == _cooldownDashForwardMaxLevel)
+        {
+            _cooldownDashForwardMaxLevelWarningText.SetActive(true);
+            
+        }
+        if (IncomeLevel == _incomeMaxLevel)
+        {
+            _incomeMaxLevelWarningText.SetActive(true);
+        }
+        if (StartForceLevel == _startForceMaxLevel)
+        {
+            _startForceMaxLevelWarningText.SetActive(true);
+           
+        }
     }
 
 
