@@ -50,7 +50,7 @@ public class Upgrades : MonoBehaviour
         _moneyManager.UpdateUi();
         DashForwardLevel++;
         _dashForwardLevelText.text = DashForwardLevel.ToString();
-        _wheelController.DashForwardForce = DashForwardLevel * 10;
+        _wheelController.DashForwardForce  += 10;
 
         if (DashForwardLevel == _dashForwardMaxLevel)
         {

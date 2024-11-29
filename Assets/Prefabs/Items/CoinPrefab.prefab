@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 62207909108843132}
   - component: {fileID: 3995495885598887385}
   - component: {fileID: 1195192362963892499}
-  - component: {fileID: 3129118576890981139}
   - component: {fileID: -5896111441856990401}
+  - component: {fileID: 9212423129087042324}
   m_Layer: 0
   m_Name: CoinPrefab
   m_TagString: Untagged
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3129118576890981139
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835085056100227270}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5216581434543980006, guid: 87ccb7d457168de47b7653f07b6a766b, type: 3}
 --- !u!114 &-5896111441856990401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ec0e953a54d4a40b539497964699ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &9212423129087042324
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835085056100227270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.19999999
+  m_Center: {x: 0, y: 0, z: 0}

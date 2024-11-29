@@ -1036,14 +1036,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ed70b84f587904e9ecc11b37e762f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsPurchased: 0
-  CountViewAds: 0
   CharacterSkin: {fileID: 0}
   CountViewAdsText: {fileID: 3773377398968547503}
   _priceText: {fileID: 6771602969628992157}
   _priceInADText: {fileID: 3528267724168181106}
   _price: {fileID: 6771602968553859612}
   _priceInAD: {fileID: 5150474389996801259}
+  _lockImage: {fileID: 6771602968951930676}
 --- !u!114 &2154835809652490892
 MonoBehaviour:
   m_ObjectHideFlags: 0

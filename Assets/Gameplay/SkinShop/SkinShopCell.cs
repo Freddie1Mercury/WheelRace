@@ -19,6 +19,7 @@ public class SkinShopCell : MonoBehaviour
 
     [SerializeField] private GameObject _price;
     [SerializeField] private GameObject _priceInAD;
+    [SerializeField] private GameObject _lockImage;
 
     private Button _cellButton;
 
@@ -89,14 +90,11 @@ public class SkinShopCell : MonoBehaviour
         }
 
         YandexGame.SaveProgress();
-            Debug.Log(SkinSaveInfos.Count + "SkinSaveInfos Count Check");
     }
 
     public void UnlockCell()
     {
-        Transform temp = transform.Find("LockImage");
-        GameObject lockImage = temp.gameObject;
-        lockImage.SetActive(false);
+        _lockImage.SetActive(false);
 
         if (!CharacterSkin.IsPriceInAD)
         {

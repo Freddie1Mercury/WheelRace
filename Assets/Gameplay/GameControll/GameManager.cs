@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        //YandexGame.ResetSaveProgress();
+        YandexGame.ResetSaveProgress();
+        Application.targetFrameRate = 120;
     }
 }

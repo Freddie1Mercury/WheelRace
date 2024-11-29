@@ -5,7 +5,7 @@ using UnityEngine;
 public  class DistanceCounter : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text _distanceConterText;
+    private TMP_Text _distanceCounterText;
     [SerializeField]
     private WheelController _wheelController;
 
@@ -28,7 +28,7 @@ public  class DistanceCounter : MonoBehaviour
 
         _currentResult = Mathf.Abs(transform.position.x - _startXPosition);
         if (_currentResult > 0 && _currentResult > _oldDistanceX)
-            _distanceConterText.text = Convert.ToInt64(_currentResult).ToString();
+            _distanceCounterText.text = Convert.ToInt64(_currentResult).ToString();
         _oldDistanceX = _currentResult;
     }
 
