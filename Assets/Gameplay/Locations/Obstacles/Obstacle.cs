@@ -7,7 +7,9 @@ public class Obstacle : MonoBehaviour
 {
     protected BuffAndDebuffBarsPool _buffAndDebuffBarsPool;
     protected GameObject _wheel;
+    protected int _priority = 10;
     private CinemachineVirtualCamera _mainCamera;
+
 
     private void Start()
     {
@@ -142,7 +144,7 @@ public class Obstacle : MonoBehaviour
 
         wheelRigidbody.useGravity = true;
         wheelRigidbody.drag = 0.2f;
-        _mainCamera.Priority += 10;
+        _mainCamera.Priority = 10;
 
 
     }

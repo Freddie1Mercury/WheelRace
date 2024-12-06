@@ -26,7 +26,7 @@ namespace YG
         public int UpgradeCooldownDashForwardPrice = 100;
         public int UpgradeStartForcePrice = 100;
         public float MoneyMultipier = 1;
-        public float AllMoney = 40000;
+        public float AllMoney = 400;
 
         //SkinShopCell Data
         public List<SkinSaveInfo> SkinSaveInfos = new List<SkinSaveInfo>(1);

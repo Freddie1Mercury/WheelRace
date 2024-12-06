@@ -1912,10 +1912,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinPrefab (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 9212423129087042324, guid: d79c23320aeec744fab130e427dce07f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d79c23320aeec744fab130e427dce07f, type: 3}
 --- !u!4 &5541694702754304096 stripped

@@ -36,6 +36,7 @@ public class EndGame : MonoBehaviour
             _wheel.transform.GetComponent<Rigidbody>().isKinematic = true;
             _wheel.transform.position = _startPosition;
             _wheel.transform.rotation = _startRotation;
+            _wheelController.DashForwardImage.fillAmount = 1;
             _terrainPool.ClearPool();
             _moneyManager.AddMoneyForLastSession();
             _uiManager.GameUIDisable();

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CameraDebuff : Debuff
 {
     private CinemachineVirtualCamera _baseCamera;
-    private int _priority = 10;
     private void Start()
     {
         _buffAndDebuffBarsPool = GameObject.Find("BuffAndDebuffBarsPool").GetComponent<BuffAndDebuffBarsPool>();
@@ -32,7 +31,8 @@ public class CameraDebuff : Debuff
         {
             OffObstacle();
             _debuffTime = 10;
-            _baseCamera.Priority -= _priority;
+            _baseCamera.Priority = -_priority;
+            Debug.Log("BaseCamera Priority OnnTriggerEnter " + _baseCamera.Priority);
             StartCoroutine(WaitEndDebuff());
             _debuffBarIndex = _buffAndDebuffBarsPool.GetPool(false);
             _remainingTimeUntilEndDebuff = _debuffTime;
@@ -42,7 +42,8 @@ public class CameraDebuff : Debuff
     private IEnumerator WaitEndDebuff()
     {
         yield return new WaitForSeconds(_debuffTime);
-        _baseCamera.Priority += _priority;
+        _baseCamera.Priority = _priority;
+        Debug.Log("BaseCamera Priority WaitEndDebuff " + _baseCamera.Priority);
         OnnObstacle();
     }
 }

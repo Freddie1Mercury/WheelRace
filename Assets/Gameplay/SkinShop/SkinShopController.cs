@@ -29,7 +29,7 @@ public class SkinShopController : MonoBehaviour
         _playerMeshFilter = _player.GetComponent<MeshFilter>();
         _playerRenderer = _player.GetComponent<MeshRenderer>();
         _playerMeshColider = _player.GetComponent<MeshCollider>();
-       
+
     }
 
     private void Start()
@@ -52,7 +52,7 @@ public class SkinShopController : MonoBehaviour
         //{
         //    Debug.Log(item);
         //}
-       
+
     }
 
     public void BuySkin(int cellIndex)
@@ -63,17 +63,18 @@ public class SkinShopController : MonoBehaviour
         {
             return;
         }
-            Debug.Log(_skinShopCell.CountViewAds + "CountViewAds");
+        Debug.Log(_skinShopCell.CountViewAds + "CountViewAds");
 
         if (!_skinShopCell.CharacterSkin.IsPriceInAD)
         {
-        if (_moneyManager.AllMoney < _skinShopCell.CharacterSkin.SkinPrice)
-        {
-            return;
-        }
-        _moneyManager.DeductMoney(_skinShopCell.CharacterSkin.SkinPrice);
-        _skinShopCell.UnlockCell();
+            if (_moneyManager.AllMoney < _skinShopCell.CharacterSkin.SkinPrice)
+            {
+                return;
+            }
+            _moneyManager.DeductMoney(_skinShopCell.CharacterSkin.SkinPrice);
+            _skinShopCell.UnlockCell();
             SelectSkin(cellIndex);
+            _buySkinButton.gameObject.SetActive(false);
         }
         else
         {
@@ -81,20 +82,21 @@ public class SkinShopController : MonoBehaviour
             {
                 return;
             }
-                YandexGame.RewVideoShow(1);
-            _skinShopCell.CountViewAds +=1;
+            YandexGame.RewVideoShow(1);
+            _skinShopCell.CountViewAds += 1;
             _skinShopCell.CountViewAdsText.text = _skinShopCell.CountViewAds.ToString();
             if (_skinShopCell.CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
             {
                 _skinShopCell.UnlockCell();
-                SkinSaveInfo skinSaveTemp =_skinShopCell.SkinSaveInfos[cellIndex];
+                SkinSaveInfo skinSaveTemp = _skinShopCell.SkinSaveInfos[cellIndex];
                 skinSaveTemp.IsPuchased = true;
-               _skinShopCell.SkinSaveInfos[cellIndex] = skinSaveTemp;
+                _skinShopCell.SkinSaveInfos[cellIndex] = skinSaveTemp;
                 SelectSkin(cellIndex);
+                _buySkinButton.gameObject.SetActive(false);
                 return;
             }
         }
-      
+
     }
 
     public void SelectSkin(int cellIndex)
@@ -104,15 +106,26 @@ public class SkinShopController : MonoBehaviour
 
         for (int i = 0; i < SkinShopCells.Count; i++)
         {
-            if (i != cellIndex)
+            if (_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
             {
-                SkinShopCells[i].GetComponent<SkinShopCell>().HideORShowSkinSelectionIndicator(false);
+                if (i != cellIndex)
+                {
+                    SkinShopCells[i].GetComponent<SkinShopCell>().HideORShowSkinSelectionIndicator(false);
+                }
             }
         }
 
+        if (!_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+        {
+            _buySkinButton.gameObject.SetActive(true);
+        }
+        if (_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+        {
+            _buySkinButton.gameObject.SetActive(false);
+        }
         _buySkinButton.onClick.RemoveAllListeners();
         _buySkinButton.onClick.AddListener(() => BuySkin(cellIndex));
-        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(), 
+        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(),
            _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject);
         Debug.Log(SkinShopCells.Count + "SkinShopCell Count");
         if (!_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
@@ -128,7 +141,7 @@ public class SkinShopController : MonoBehaviour
 
     private void ReplaceMeshAndScale(Mesh mesh, MeshFilter meshFilter, MeshCollider meshCollider, MeshRenderer meshRenderer, GameObject scaleObject)
     {
-      
+
         float currentGlobalSize = GetMaxSize(meshRenderer.bounds.size);
 
         meshFilter.mesh = _skinShopCell.CharacterSkin.SkinMesh;

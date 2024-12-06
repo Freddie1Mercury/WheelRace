@@ -1,5 +1,5 @@
 {
-  "idSave": 2661,
+  "idSave": 3460,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
@@ -11,19 +11,19 @@
     false
   ],
   "UpgradeIncomePrice": 100,
-  "UpgradeDashForwardPrice": 1354,
-  "UpgradeCooldownDashForwardPrice": 1354,
-  "UpgradeStartForcePrice": 5743,
+  "UpgradeDashForwardPrice": 100,
+  "UpgradeCooldownDashForwardPrice": 100,
+  "UpgradeStartForcePrice": 100,
   "MoneyMultipier": 1.0,
-  "AllMoney": 21535.0,
+  "AllMoney": 400.0,
   "SkinSaveInfos": [],
   "CountViewAds": 0,
-  "DashForwardLevel": 10,
-  "CooldownDashForwadrlevel": 10,
+  "DashForwardLevel": 0,
+  "CooldownDashForwadrlevel": 0,
   "IncomeLevel": 0,
-  "StartForceLevel": 10,
-  "DashForwardForce": 120,
-  "CooldownDashForward": 5.0,
+  "StartForceLevel": 0,
+  "DashForwardForce": 20,
+  "CooldownDashForward": 15.0,
   "RemainingTimeUntilDashForward": 0.0,
-  "StartForce": 130
+  "StartForce": 30
 }

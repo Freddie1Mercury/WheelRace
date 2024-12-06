@@ -4316,7 +4316,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 30
+  m_CookingOptions: 16
   m_Mesh: {fileID: 4300004, guid: 568c8be8e61e26343a5217ab2fa1ad66, type: 3}
 --- !u!1 &4950818656025685801
 GameObject:
@@ -5931,6 +5931,7 @@ GameObject:
   - component: {fileID: 4950818656664784174}
   - component: {fileID: 4950818656664784168}
   - component: {fileID: 4950818656664784169}
+  - component: {fileID: 9042784549245678672}
   m_Layer: 0
   m_Name: EA04_Prop_Barrel_01a_LOD0
   m_TagString: Untagged
@@ -6004,6 +6005,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9042784549245678672
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950818656664784175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 16
+  m_Mesh: {fileID: 4300004, guid: c9bc4f7460ea93e468ad3ff57129172b, type: 3}
 --- !u!1 &4950818656667514615
 GameObject:
   m_ObjectHideFlags: 0
@@ -6954,10 +6969,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WendGustDebuffPrefab (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 3398863655890247622, guid: 2c9c85af51631b94bbeb5f623fb504e3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c9c85af51631b94bbeb5f623fb504e3, type: 3}
 --- !u!4 &2608936165109248111 stripped
@@ -6975,10 +6986,6 @@ PrefabInstance:
     - target: {fileID: 8546696696848111915, guid: 4c8680f76d3ae924a80449f38471e8a3, type: 3}
       propertyPath: m_Name
       value: SlowdownDebuffPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 8546696696848111915, guid: 4c8680f76d3ae924a80449f38471e8a3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8546696696848403723, guid: 4c8680f76d3ae924a80449f38471e8a3, type: 3}
       propertyPath: m_RootOrder
@@ -7875,10 +7882,6 @@ PrefabInstance:
     - target: {fileID: 1346517759410813607, guid: e10af7dbe3cd31f4f98f66c76cc61bd3, type: 3}
       propertyPath: m_Name
       value: AntiGravityBuffPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 1346517759410813607, guid: e10af7dbe3cd31f4f98f66c76cc61bd3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5580141253550818753, guid: e10af7dbe3cd31f4f98f66c76cc61bd3, type: 3}
       propertyPath: m_RootOrder
