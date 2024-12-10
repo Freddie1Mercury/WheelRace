@@ -45,6 +45,9 @@ namespace YG
         public float RemainingTimeUntilDashForward = 0;
         public int StartForce = 30;
 
+        //DistanceCounter Data
+        public float MaxResult = 0;
+
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 
 

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fca1e80e4f55844b4447867c964c06, type: 3}
   m_Name: Wheel
   m_EditorClassIdentifier: 
-  _skinMesh: {fileID: -951608786083511892, guid: b51b5577e6bf6e6428ec1d8a65aea732, type: 3}
-  _skinMaterial: {fileID: 1341000134157307401, guid: b51b5577e6bf6e6428ec1d8a65aea732, type: 3}
-  _skinCellSprite: {fileID: 21300000, guid: 3a05e23d08b505f40844cf319c43be4d, type: 3}
-  _skinPrice: 0
+  IsPriceInAD: 0
+  _skinMesh: {fileID: 497464760743309452, guid: bd1d95b5310aa3847adbcc7e09680115, type: 3}
+  _skinMaterial: {fileID: 2100000, guid: 2234385f9af08b046bee3dc54078655a, type: 2}
+  _skinCellSprite: {fileID: 21300000, guid: 5d97593d2a7d1d74392fa24e0a2082e7, type: 3}
+  _skinPrice: 15000
+  _skinPriceInAD: 0

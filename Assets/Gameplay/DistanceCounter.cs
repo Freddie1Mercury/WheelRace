@@ -1,8 +1,9 @@
 using System;
 using TMPro;
 using UnityEngine;
+using YG;
 
-public  class DistanceCounter : MonoBehaviour
+public class DistanceCounter : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text _distanceCounterText;
@@ -13,7 +14,10 @@ public  class DistanceCounter : MonoBehaviour
     private float _oldDistanceX = 0;
     private float _currentResult = 0;
     private float _oldResult = 0;
+    private string _leaderboardName = "MaxResult";
 
+
+    public float MaxResult { get =>YandexGame.savesData.MaxResult; set => YandexGame.savesData.MaxResult = value; }
     public float OldResult => _oldResult;
 
     void Start()
@@ -35,6 +39,11 @@ public  class DistanceCounter : MonoBehaviour
     private void ClearDistance()
     {
         _oldResult = _currentResult;
+        if (MaxResult < _oldResult)
+        {
+            MaxResult = _oldResult;
+            YandexGame.NewLeaderboardScores(_leaderboardName, (long)MaxResult);
+        }
         _currentResult = 0;
     }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca1e80e4f55844b4447867c964c06, type: 3}
+  m_Name: CrystalData
+  m_EditorClassIdentifier: 
+  IsPriceInAD: 1
+  _skinMesh: {fileID: -6168739999915301496, guid: 98585125d30f2504b831eea7473bce5f, type: 3}
+  _skinMaterial: {fileID: 2100000, guid: a0f91f34ae2cd6f4d80819a53b2c9b03, type: 2}
+  _skinCellSprite: {fileID: 21300000, guid: ea12f272e64ef4749a1040edaea3bf8b, type: 3}
+  _skinPrice: 0
+  _skinPriceInAD: 5

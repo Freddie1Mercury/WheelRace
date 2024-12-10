@@ -23,6 +23,11 @@ public class SkinShopController : MonoBehaviour
 
     private MeshCollider _playerMeshColider;
 
+    private float _originalGlobalSize;
+
+    private Bounds _skinStoreViewObjectOriginalScale;
+    private Bounds _playerOriginalScale;
+
 
     private void Awake()
     {
@@ -30,28 +35,8 @@ public class SkinShopController : MonoBehaviour
         _playerRenderer = _player.GetComponent<MeshRenderer>();
         _playerMeshColider = _player.GetComponent<MeshCollider>();
 
-    }
-
-    private void Start()
-    {
-        //if (YandexGame.savesData.IsPurchaseds.Count == 0)
-        //{
-        //    for (int i = 0; i < SkinShopCells.Count; i++)
-        //    {
-        //        bool temp = false;
-        //        YandexGame.savesData.IsPurchaseds.Add(temp);
-        //    }
-        //}
-        //if (YandexGame.savesData.IsPurchaseds.Count != SkinShopCells.Count)
-        //{
-
-        //}
-        //Debug.Log(YandexGame.savesData.IsPurchaseds.Count + "IsPurchasedCount");
-        //Debug.Log(SkinShopCells.Count + "SkinShopCells Count");
-        //foreach (var item in YandexGame.savesData.IsPurchaseds)
-        //{
-        //    Debug.Log(item);
-        //}
+        _playerOriginalScale = _player.GetComponent<MeshCollider>().bounds;
+        _skinStoreViewObjectOriginalScale = _skinStoreViewObject.GetComponent<MeshCollider>().bounds;
 
     }
 
@@ -126,36 +111,43 @@ public class SkinShopController : MonoBehaviour
         _buySkinButton.onClick.RemoveAllListeners();
         _buySkinButton.onClick.AddListener(() => BuySkin(cellIndex));
         ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(),
-           _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject);
+           _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject, _skinStoreViewObjectOriginalScale);
         Debug.Log(SkinShopCells.Count + "SkinShopCell Count");
         if (!_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
         {
             return;
         }
 
-        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _playerMeshFilter, _playerMeshColider, _playerRenderer, _player);
+        ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _playerMeshFilter, _playerMeshColider, _playerRenderer, _player, _playerOriginalScale);
         _skinShopCell.HideORShowSkinSelectionIndicator(true);
 
     }
 
 
-    private void ReplaceMeshAndScale(Mesh mesh, MeshFilter meshFilter, MeshCollider meshCollider, MeshRenderer meshRenderer, GameObject scaleObject)
+    private void ReplaceMeshAndScale(Mesh mesh, MeshFilter meshFilter, MeshCollider meshCollider, MeshRenderer meshRenderer, GameObject scaleObject, Bounds originalScale)
     {
 
-        float currentGlobalSize = GetMaxSize(meshRenderer.bounds.size);
+        if (_skinShopCell.IsNeedRotate)
+        {
+            scaleObject.transform.rotation = Quaternion.Euler(_skinShopCell.Rotation);
+        }
+        else
+        {
+            scaleObject.transform.rotation = Quaternion.identity;
+        }
 
         meshFilter.mesh = _skinShopCell.CharacterSkin.SkinMesh;
         meshCollider.sharedMesh = _skinShopCell.CharacterSkin.SkinMesh;
         meshRenderer.material = _skinShopCell.CharacterSkin.SkinMaterial;
 
+        _originalGlobalSize = GetMaxSize(originalScale.size);
         float newGlobalSize = GetMaxSize(meshRenderer.bounds.size);
 
         if (newGlobalSize > 0)
         {
-            float scaleFactor = currentGlobalSize / newGlobalSize;
+            float scaleFactor = _originalGlobalSize / newGlobalSize;
             scaleObject.transform.localScale *= scaleFactor;
         }
-
 
     }
 

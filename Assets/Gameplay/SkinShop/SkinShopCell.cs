@@ -14,6 +14,10 @@ public class SkinShopCell : MonoBehaviour
 
     public TextMeshProUGUI CountViewAdsText;
 
+    public bool IsNeedRotate;
+
+    public Vector3 Rotation;
+
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _priceInADText;
 

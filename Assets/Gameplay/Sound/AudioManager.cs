@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         _soundPlayers.Add(Instantiate(_soundPlayerPrefab, _soundsPlayersPosition)); 
     }
 
-    public void PlaySound(AudioClip audioClip,float volume = 0.5f, float pithc = 1)
+    public void PlaySound(AudioClip audioClip,float volume = 0.1f, float pithc = 1)
     {
         int counterActiveSoundPlayer = 0;
 

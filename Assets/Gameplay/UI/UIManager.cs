@@ -1,6 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +14,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _dashForwardButton;
     [SerializeField] private GameObject _buffBarPrefab;
     [SerializeField] private GameObject _debuffBarPrefab;
+    [SerializeField] private GameObject _waitAdPanel;
+
+    [SerializeField] private TextMeshProUGUI _waitAdPanelDescription;
+    [SerializeField] private TextMeshProUGUI _waitAdPanelTimerText;
 
     [SerializeField] private List<GameObject> _gameUi = new List<GameObject>();
     [SerializeField] private List<GameObject> _buffOrDebuffBars = new List<GameObject>();
@@ -90,5 +97,22 @@ public class UIManager : MonoBehaviour
         {
             uiElement.SetActive(value);
         }
+    }
+
+    public IEnumerator WaitAdPanel(string waitAdPanelDescripton, int timerForSecond)
+    {
+        _waitAdPanel.SetActive(true);
+        _waitAdPanelDescription.text = waitAdPanelDescripton;
+        _waitAdPanelTimerText.text = timerForSecond.ToString();
+
+        int temp = timerForSecond;
+        for (int i = 0; i < temp; i++)
+        {
+          yield return  new WaitForSeconds(1);
+            timerForSecond -= 1;
+            _waitAdPanelTimerText.text = timerForSecond.ToString();
+        }
+        _waitAdPanel.SetActive(false);
+        YandexGame.FullscreenShow();
     }
 }

@@ -17,6 +17,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private Obstacle _obstacle;
     [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private YandexGame yandexGame;
 
     [SerializeField] private GameObject _deathPanel;
     [SerializeField] private GameObject _wheel;
@@ -41,7 +42,10 @@ public class EndGame : MonoBehaviour
             _moneyManager.AddMoneyForLastSession();
             _uiManager.GameUIDisable();
             _obstacle.ClearBuffAndDebuff();
-            YandexGame.FullscreenShow();
+            if (YandexGame.timerShowAd >= yandexGame.infoYG.fullscreenAdInterval)
+            {
+                StartCoroutine(_uiManager.WaitAdPanel("Вы проиграли, реклама начнётся через", 3));
+            }
         }
     }
 
@@ -54,7 +58,7 @@ public class EndGame : MonoBehaviour
                 yield return new WaitForSeconds(2);
                 if (_wheelController.RigidbodyWheel.velocity.x >= -0.2 && transform.position != StartPosition)
                 {
-                   _wheelController.WheelIslive = false;
+                    _wheelController.WheelIslive = false;
                     yield return new WaitForSeconds(0.1f);
                     Death();
                 }
