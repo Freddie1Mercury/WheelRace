@@ -1,5 +1,5 @@
 {
-  "idSave": 4696,
+  "idSave": 5049,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
@@ -15,45 +15,8 @@
   "UpgradeCooldownDashForwardPrice": 100,
   "UpgradeStartForcePrice": 100,
   "MoneyMultipier": 1.0,
-  "AllMoney": 400.0,
-  "SkinSaveInfos": [
-    {
-      "SkinCellName": "CharacterSkinItem (5)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (1)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (8)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (3)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (7)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (4)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem",
-      "IsPuchased": true
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (2)",
-      "IsPuchased": false
-    },
-    {
-      "SkinCellName": "CharacterSkinItem (6)",
-      "IsPuchased": false
-    }
-  ],
+  "AllMoney": 484.0,
+  "SkinSaveInfos": [],
   "CountViewAds": 0,
   "DashForwardLevel": 0,
   "CooldownDashForwadrlevel": 0,
@@ -63,5 +26,5 @@
   "CooldownDashForward": 15.0,
   "RemainingTimeUntilDashForward": 0.0,
   "StartForce": 30,
-  "MaxResult": 0.0
+  "MaxResult": 513.365051
 }

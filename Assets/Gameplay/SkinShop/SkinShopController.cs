@@ -5,7 +5,7 @@ using YG;
 
 public class SkinShopController : MonoBehaviour
 {
-    public List<SkinShopCell> SkinShopCells = new List<SkinShopCell>(1);
+    public List<SkinShopCell> SkinShopCells = new List<SkinShopCell>();
 
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _skinStoreViewObject;
@@ -44,11 +44,10 @@ public class SkinShopController : MonoBehaviour
     {
         _skinShopCell = SkinShopCells[cellIndex].GetComponent<SkinShopCell>();
         Debug.Log("BuySkin");
-        if (_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+        if (_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].IsPurchased)
         {
             return;
         }
-        Debug.Log(_skinShopCell.CountViewAds + "CountViewAds");
 
         if (!_skinShopCell.CharacterSkin.IsPriceInAD)
         {
@@ -63,21 +62,26 @@ public class SkinShopController : MonoBehaviour
         }
         else
         {
-            if (_skinShopCell.CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
+            if (_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
             {
                 return;
             }
             YandexGame.RewVideoShow(1);
-            _skinShopCell.CountViewAds += 1;
-            _skinShopCell.CountViewAdsText.text = _skinShopCell.CountViewAds.ToString();
-            if (_skinShopCell.CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
+            SkinSaveInfo tempSkinSafeInfo = new SkinSaveInfo();
+            tempSkinSafeInfo = _skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex];
+            tempSkinSafeInfo.CountViewAds += 1;
+            _skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex] = tempSkinSafeInfo;
+            _skinShopCell.CountViewAdsText.text = _skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].CountViewAds.ToString();
+            YandexGame.SaveProgress();
+            if (_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].CountViewAds == _skinShopCell.CharacterSkin.SkinPriceInAD)
             {
                 _skinShopCell.UnlockCell();
-                SkinSaveInfo skinSaveTemp = _skinShopCell.SkinSaveInfos[cellIndex];
-                skinSaveTemp.IsPuchased = true;
-                _skinShopCell.SkinSaveInfos[cellIndex] = skinSaveTemp;
+                SkinSaveInfo skinSaveTemp = _skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex];
+                skinSaveTemp.IsPurchased = true;
+                _skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex] = skinSaveTemp;
                 SelectSkin(cellIndex);
                 _buySkinButton.gameObject.SetActive(false);
+                YandexGame.SaveProgress();
                 return;
             }
         }
@@ -91,7 +95,7 @@ public class SkinShopController : MonoBehaviour
 
         for (int i = 0; i < SkinShopCells.Count; i++)
         {
-            if (_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+            if (_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].IsPurchased)
             {
                 if (i != cellIndex)
                 {
@@ -100,20 +104,20 @@ public class SkinShopController : MonoBehaviour
             }
         }
 
-        if (!_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+        if (!_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].IsPurchased)
         {
             _buySkinButton.gameObject.SetActive(true);
+        _buySkinButton.onClick.RemoveAllListeners();
+        _buySkinButton.onClick.AddListener(() => BuySkin(cellIndex));
         }
-        if (_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+        if (_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].IsPurchased)
         {
             _buySkinButton.gameObject.SetActive(false);
         }
-        _buySkinButton.onClick.RemoveAllListeners();
-        _buySkinButton.onClick.AddListener(() => BuySkin(cellIndex));
         ReplaceMeshAndScale(_skinShopCell.CharacterSkin.SkinMesh, _skinStoreViewObject.GetComponent<MeshFilter>(),
            _skinStoreViewObject.GetComponent<MeshCollider>(), _skinStoreViewObject.GetComponent<MeshRenderer>(), _skinStoreViewObject, _skinStoreViewObjectOriginalScale);
         Debug.Log(SkinShopCells.Count + "SkinShopCell Count");
-        if (!_skinShopCell.SkinSaveInfos[cellIndex].IsPuchased)
+        if (!_skinShopCell.SkinSaveInfos[_skinShopCell.SkinSafeInfoIndex].IsPurchased)
         {
             return;
         }

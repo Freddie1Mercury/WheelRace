@@ -4,5 +4,6 @@ using System;
 public struct SkinSaveInfo 
 {
     public string SkinCellName;
-    public bool IsPuchased;
+    public bool IsPurchased;
+    public int CountViewAds;
 }

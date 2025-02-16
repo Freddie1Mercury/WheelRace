@@ -31,8 +31,9 @@ public class EndGame : MonoBehaviour
 
     public void Death()
     {
-        if (_wheel.transform.position != _startPosition && !_wheelController.WheelIslive)
+        if (_wheel.transform.position != _startPosition )
         {
+            _wheelController.WheelIslive = false;
             _deathPanel.SetActive(true);
             _wheel.transform.GetComponent<Rigidbody>().isKinematic = true;
             _wheel.transform.position = _startPosition;
@@ -42,10 +43,10 @@ public class EndGame : MonoBehaviour
             _moneyManager.AddMoneyForLastSession();
             _uiManager.GameUIDisable();
             _obstacle.ClearBuffAndDebuff();
-            if (YandexGame.timerShowAd >= yandexGame.infoYG.fullscreenAdInterval)
-            {
-                StartCoroutine(_uiManager.WaitAdPanel("Вы проиграли, реклама начнётся через", 3));
-            }
+            //if (YandexGame.timerShowAd >= yandexGame.infoYG.fullscreenAdInterval)
+            //{
+            //    StartCoroutine(_uiManager.WaitAdPanel("Вы проиграли, реклама начнётся через", 3));
+            //}
         }
     }
 

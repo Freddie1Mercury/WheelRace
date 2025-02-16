@@ -8,7 +8,8 @@ public class SkinShopCell : MonoBehaviour
 {
     public List<SkinSaveInfo> SkinSaveInfos { get => YandexGame.savesData.SkinSaveInfos; set => YandexGame.savesData.SkinSaveInfos = value; }
 
-    public int CountViewAds  { get => YandexGame.savesData.CountViewAds; set => YandexGame.savesData.CountViewAds = value; }
+
+    public int SkinSafeInfoIndex;
 
     public CharacterSkin CharacterSkin;
 
@@ -62,16 +63,26 @@ public class SkinShopCell : MonoBehaviour
             YandexGame.SaveProgress();
         }
 
+        _skinShopController.SkinShopCells.Add(transform.GetComponent<SkinShopCell>());
+
         for (int i = 0; i < SkinSaveInfos.Count; i++)
         {
             if (SkinSaveInfos[i].SkinCellName == transform.name)
             {
-                _cellIndex = i;
-                break;
+                SkinSafeInfoIndex = i;
+                SkinShopCell tempSkinShopCell = transform.GetComponent<SkinShopCell>();
+                for (int j = 0; j < _skinShopController.SkinShopCells.Count; j++)
+                {
+                    if (tempSkinShopCell == _skinShopController.SkinShopCells[j])
+                    {
+                        _cellIndex = j;
+                        break;
+                    }
+
+                }
             }
         }
 
-        _skinShopController.SkinShopCells.Add(transform.GetComponent<SkinShopCell>());
 
         tempTransform = transform.Find("Price/PriceText");
         _priceText.text = CharacterSkin.SkinPrice.ToString();
@@ -88,7 +99,7 @@ public class SkinShopCell : MonoBehaviour
 
         _cellButton.onClick.AddListener(() => _skinShopController.SelectSkin(_cellIndex));
 
-        if (SkinSaveInfos[_cellIndex].IsPuchased == true)
+        if (SkinSaveInfos[_cellIndex].IsPurchased == true)
         {
             UnlockCell();
         }
@@ -104,7 +115,7 @@ public class SkinShopCell : MonoBehaviour
         {
             _price.SetActive(false);
             SkinSaveInfo skinSaveTemp = SkinSaveInfos[_cellIndex];
-            skinSaveTemp.IsPuchased = true;
+            skinSaveTemp.IsPurchased = true;
             SkinSaveInfos[_cellIndex] = skinSaveTemp;
             YandexGame.SaveProgress();
         }
@@ -112,7 +123,7 @@ public class SkinShopCell : MonoBehaviour
         {
             _priceInAD.SetActive(false);
             SkinSaveInfo skinSaveTemp = SkinSaveInfos[_cellIndex];
-            skinSaveTemp.IsPuchased = true;
+            skinSaveTemp.IsPurchased = true;
             SkinSaveInfos[_cellIndex] = skinSaveTemp;
             YandexGame.SaveProgress();
         }
